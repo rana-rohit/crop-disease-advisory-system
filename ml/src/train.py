@@ -9,6 +9,11 @@ from pathlib import Path
 from typing import Any
 
 import tensorflow as tf
+from ml.config import (
+    DATASET_ROOT,
+    OUTPUT_DIR,
+)
+
 
 try:
     from .data_loader import (
@@ -34,7 +39,7 @@ DEFAULT_FINE_TUNE_EPOCHS = 0
 DEFAULT_LEARNING_RATE = 1e-3
 DEFAULT_FINE_TUNE_LEARNING_RATE = 1e-5
 DEFAULT_DROPOUT_RATE = 0.3
-DEFAULT_OUTPUT_DIR = Path("ml") / "outputs"
+DEFAULT_OUTPUT_DIR = OUTPUT_DIR
 DEFAULT_MODEL_FILENAME = "crop_disease_mobilenetv2.keras"
 DEFAULT_WEIGHTS_FILENAME = "best_mobilenetv2.weights.h5"
 DEFAULT_HISTORY_FILENAME = "training_history.json"
@@ -172,6 +177,16 @@ def train_model(args: argparse.Namespace) -> dict[str, Path | list[str]]:
         seed=args.seed,
     )
 
+    print("\nDataset Summary")
+    print("-" * 40)
+    print(
+        f"Classes: {len(dataset_bundle.class_names)}"
+    )
+    print(
+        f"Dataset Root: {args.data_dir}"
+    )
+    print("-" * 40)
+
     train_dataset, validation_dataset = prepare_datasets(
         train_dataset=dataset_bundle.train,
         validation_dataset=dataset_bundle.validation,
@@ -240,8 +255,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--data-dir",
-        default=os.getenv("PLANTVILLAGE_DATA_DIR"),
-        required=os.getenv("PLANTVILLAGE_DATA_DIR") is None,
+        default=DATASET_ROOT,
         help="Dataset root containing train/ and val/ folders.",
     )
     parser.add_argument(
@@ -275,12 +289,35 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     """Train the model from command-line arguments."""
 
-    artifacts = train_model(parse_args())
+    gpus = tf.config.list_physical_devices("GPU")
+
+    print("\nTensorFlow Environment")
+    print("-" * 40)
+    print(f"GPU Count: {len(gpus)}")
+
+    if gpus:
+        for gpu in gpus:
+            print("GPU:", gpu)
+    print("-" * 40)
+    
+    args = parse_args()
+
+    print("\nTraining Configuration")
+    print("-" * 40)
+    print(f"Epochs: {args.epochs}")
+    print(f"Batch Size: {args.batch_size}")
+    print(f"Image Size: {args.image_size}")
+    print(f"Learning Rate: {args.learning_rate}")
+    print("-" * 40)
+
+    artifacts = train_model(args)
+
     print("Training complete.")
-    print(f"Model: {artifacts['model_path']}")
-    print(f"Best weights: {artifacts['weights_path']}")
-    print(f"History: {artifacts['history_path']}")
-    print(f"Class names: {artifacts['class_names_path']}")
+    print("-" * 40)
+    print("Model:", artifacts["model_path"])
+    print("Weights:", artifacts["weights_path"])
+    print("History:", artifacts["history_path"])
+    print("Class names:", artifacts["class_names_path"])
 
 
 if __name__ == "__main__":
