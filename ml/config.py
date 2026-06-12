@@ -10,7 +10,7 @@ DATASET_ZIP_PATH = (
     "/content/drive/MyDrive/SmartCropDisease/dataset/archive.zip"
 )
 
-DATASET_ROOT = "/content/PlantVillage/PlantVillage"
+DATASET_ROOT = "/content/PlantVillage"
 
 TRAIN_DIR = f"{DATASET_ROOT}/train"
 VAL_DIR = f"{DATASET_ROOT}/val"
