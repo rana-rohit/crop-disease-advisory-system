@@ -62,8 +62,26 @@ analyzeButton.addEventListener(
                 JSON.stringify(result)
             );
 
-            window.location.href =
-                "result.html";
+            const reader =
+                new FileReader();
+
+            reader.onload =
+                function () {
+
+                    localStorage.setItem(
+                        "uploadedImage",
+                        reader.result
+                    );
+
+                    window.location.href =
+                        "result.html";
+                };
+
+            reader.readAsDataURL(
+                file
+            );
+
+            return;
 
         } catch (error) {
 

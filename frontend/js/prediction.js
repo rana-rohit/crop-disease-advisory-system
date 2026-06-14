@@ -1,3 +1,31 @@
+function formatDiseaseName(
+    diseaseName
+) {
+
+    return diseaseName
+        .replaceAll(
+            "___",
+            " → "
+        )
+        .replaceAll(
+            "_",
+            " "
+        );
+}
+
+const uploadedImage =
+    localStorage.getItem(
+        "uploadedImage"
+    );
+
+if (uploadedImage) {
+
+    document.getElementById(
+        "uploadedImage"
+    ).src =
+        uploadedImage;
+}
+
 const result =
     JSON.parse(
         localStorage.getItem(
@@ -11,11 +39,15 @@ if (!result) {
         "index.html";
 }
 
+const formattedDisease =
+    formatDiseaseName(
+        result.prediction.disease
+    );
 
 document.getElementById(
     "diseaseName"
 ).textContent =
-    result.prediction.disease;
+    formattedDisease;
 
 
 document.getElementById(
@@ -23,6 +55,22 @@ document.getElementById(
 ).textContent =
     `Confidence: ${result.prediction.confidence}%`;
 
+document.getElementById(
+    "symptoms"
+).textContent =
+    result.advisory.symptoms;
+
+
+document.getElementById(
+    "treatment"
+).textContent =
+    result.advisory.treatment;
+
+
+document.getElementById(
+    "prevention"
+).textContent =
+    result.advisory.prevention;
 
 const list =
     document.getElementById(
@@ -39,7 +87,9 @@ result.top_predictions.forEach(
             );
 
         item.textContent =
-            `${prediction.disease} (${prediction.confidence}%)`;
+            `${formatDiseaseName(
+                prediction.disease
+            )} (${prediction.confidence}%)`;
 
         list.appendChild(
             item
