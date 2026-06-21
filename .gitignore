@@ -10,6 +10,7 @@ venv/
 # Model files
 *.h5
 *.keras
+!backend/model/artifacts/crop_disease_mobilenetv2.keras
 
 # Logs
 logs/*.log
