@@ -4,7 +4,7 @@
  * API contract unchanged from original.
  */
 const API_BASE_URL =
-  window.CROPSENSE_API_BASE_URL || 'http://127.0.0.1:5000/api';
+  window.CROPSENSE_API_BASE_URL || 'https://crop-disease-advisory-system.onrender.com/api';
 
 async function predictDisease(imageFile) {
   const formData = new FormData();
