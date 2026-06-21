@@ -3,81 +3,103 @@ Prediction service.
 """
 
 import numpy as np
+from datetime import datetime, timezone
 
-from backend.model.model_loader import (
-    MODEL,
-    CLASS_NAMES,
+from backend.config.settings import get_settings
+from backend.model.model_loader import get_model, get_class_names
+from backend.services.image_service import preprocess_image
+from backend.services.disease_info_service import get_disease_info
+from backend.services.explainability_service import generate_gradcam_explanation
+from backend.services.calibration_service import apply_temperature_scaling
+from backend.services.inference_stats_service import (
+    record_prediction,
+    record_prediction_error,
+    start_timer,
 )
 
-from backend.services.image_service import (
-    preprocess_image,
-)
-
-from backend.services.disease_info_service import (
-    get_disease_info,
-)
-
-def predict_disease(image_path):
+def predict_disease(image_buffer, include_xai: bool = False):
     """
-    Predict disease from leaf image.
+    Predict disease from image buffer and return full advisory report.
     """
+    settings = get_settings()
+    start_time = start_timer()
+    model = get_model()
+    class_names = get_class_names()
 
-    image = preprocess_image(image_path)
+    try:
+        image_tensor = preprocess_image(image_buffer)
 
-    predictions = MODEL.predict(
-        image,
-        verbose=0,
-    )[0]
+        predictions = model.predict(image_tensor, verbose=0)
 
-    top_indices = np.argsort(
-        predictions
-    )[::-1][:3]
+        confidence_scores = predictions[0]
+        if settings.CALIBRATION_ENABLED:
+            confidence_scores = apply_temperature_scaling(
+                confidence_scores,
+                settings.CONFIDENCE_TEMPERATURE,
+            )
 
-    top_predictions = []
+        k = settings.TOP_K_PREDICTIONS
+        top_indices = np.argsort(confidence_scores)[-k:][::-1]
 
-    for index in top_indices:
-
-        top_predictions.append(
+        top_predictions = [
             {
-                "disease": CLASS_NAMES[index],
-                "confidence": round(
-                    float(predictions[index]) * 100,
-                    2,
-                ),
+                "disease": class_names[i],
+                "confidence": round(float(confidence_scores[i] * 100), 4),
             }
-        )
-    
-    top_confidence = top_predictions[0]["confidence"]
+            for i in top_indices
+        ]
 
-    predicted_disease = top_predictions[0]["disease"]
+        primary_prediction = top_predictions[0]
+        primary_class = primary_prediction["disease"]
+        primary_confidence = primary_prediction["confidence"]
+        top_index = int(top_indices[0])
 
-
-    if top_confidence < 80:
-
-        return {
-            "prediction": {
-                "disease": "Unknown Plant",
-                "confidence": top_confidence,
-            },
-
-            "top_predictions": top_predictions,
-
-            "advisory": {
-                "crop": "Unknown",
-                "disease": "Unknown",
-                "symptoms": "Unable to identify a supported crop leaf.",
-                "treatment": "Please upload a clearer image of a plant leaf.",
-                "prevention": "Ensure the image contains a single crop leaf from the supported dataset."
-            },
+        metadata = {
+            "model_version": settings.MODEL_VERSION,
+            "generated_at": datetime.now(timezone.utc).isoformat(),
+            "preprocessing": settings.PREPROCESSING_MODE,
+            "confidence_threshold": settings.CONFIDENCE_THRESHOLD,
+            "top_k": settings.TOP_K_PREDICTIONS,
+            "calibration_enabled": settings.CALIBRATION_ENABLED,
+            "confidence_temperature": settings.CONFIDENCE_TEMPERATURE,
         }
 
+        if primary_confidence < settings.CONFIDENCE_THRESHOLD:
+            result = {
+                "prediction": {
+                    "disease": "Unknown or Unrecognized Image",
+                    "confidence": primary_confidence,
+                },
+                "top_predictions": top_predictions,
+                "advisory": {
+                    "crop": None,
+                    "disease": "Unknown",
+                    "symptoms": "N/A",
+                    "treatment": "N/A",
+                    "prevention": "Please upload a clear image of a supported crop leaf.",
+                },
+                "severity": None,
+                "metadata": metadata,
+            }
+            record_prediction(start_time, include_xai=include_xai)
+            return result
 
-    advisory = get_disease_info(
-        predicted_disease
-    )
+        advisory_info = get_disease_info(primary_class)
 
-    return {
-        "prediction": top_predictions[0],
-        "top_predictions": top_predictions,
-        "advisory": advisory,
-    }
+        result = {
+            "prediction": primary_prediction,
+            "top_predictions": top_predictions,
+            "advisory": advisory_info,
+            "severity": None,
+            "metadata": metadata,
+        }
+        
+        if include_xai:
+            xai_data = generate_gradcam_explanation(model, image_tensor, top_index, primary_class)
+            result["xai"] = xai_data
+
+        record_prediction(start_time, include_xai=include_xai)
+        return result
+    except Exception:
+        record_prediction_error()
+        raise

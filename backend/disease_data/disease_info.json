@@ -2,320 +2,267 @@
   "Apple___Apple_scab": {
     "crop": "Apple",
     "disease": "Apple Scab",
-    "symptoms": "Dark olive-green spots on leaves and fruits.",
-    "treatment": "Apply fungicides and remove infected leaves.",
-    "prevention": "Improve air circulation and prune regularly."
+    "symptoms": "Dark olive-green to brown lesions on leaves and fruit, often with rough scabby patches.",
+    "treatment": "Remove infected debris and apply a recommended apple fungicide according to local agricultural guidance.",
+    "prevention": "Prune for airflow, avoid overhead irrigation, and remove fallen leaves after harvest."
   },
-
   "Apple___Black_rot": {
     "crop": "Apple",
     "disease": "Black Rot",
-    "symptoms": "Brown circular lesions on leaves and fruit rot.",
-    "treatment": "Remove infected fruits and apply fungicides.",
-    "prevention": "Maintain orchard sanitation."
+    "symptoms": "Circular brown leaf spots, fruit rot, and cankers on branches.",
+    "treatment": "Prune infected wood, remove mummified fruit, and use fungicide where disease pressure is high.",
+    "prevention": "Maintain orchard sanitation and avoid leaving infected fruit or limbs in the field."
   },
-
   "Apple___Cedar_apple_rust": {
     "crop": "Apple",
     "disease": "Cedar Apple Rust",
-    "symptoms": "Yellow-orange spots on leaves.",
-    "treatment": "Apply fungicides during early growth stages.",
-    "prevention": "Avoid nearby cedar hosts."
+    "symptoms": "Bright yellow-orange leaf spots and premature leaf drop in severe infections.",
+    "treatment": "Apply rust-labeled fungicide early in the season when infection risk is present.",
+    "prevention": "Reduce nearby cedar or juniper hosts when practical and select resistant cultivars."
   },
-
   "Apple___healthy": {
     "crop": "Apple",
     "disease": "Healthy",
-    "symptoms": "No disease symptoms detected.",
+    "symptoms": "No visible disease symptoms detected.",
     "treatment": "No treatment required.",
-    "prevention": "Maintain proper irrigation and monitoring."
+    "prevention": "Continue routine monitoring, pruning, balanced nutrition, and irrigation management."
   },
-
   "Blueberry___healthy": {
     "crop": "Blueberry",
     "disease": "Healthy",
-    "symptoms": "No disease symptoms detected.",
+    "symptoms": "No visible disease symptoms detected.",
     "treatment": "No treatment required.",
-    "prevention": "Maintain balanced nutrition and irrigation."
+    "prevention": "Maintain acidic soil, balanced irrigation, and routine scouting."
   },
-
   "Cherry_(including_sour)___Powdery_mildew": {
     "crop": "Cherry",
     "disease": "Powdery Mildew",
-    "symptoms": "White powdery growth on leaves and shoots.",
-    "treatment": "Apply sulfur-based fungicides and remove infected parts.",
-    "prevention": "Improve air circulation and avoid excessive humidity."
+    "symptoms": "White powdery growth on leaves and young shoots, sometimes with leaf distortion.",
+    "treatment": "Remove infected shoots and apply sulfur or other locally recommended fungicides.",
+    "prevention": "Improve canopy airflow and avoid excessive nitrogen fertilization."
   },
-
   "Cherry_(including_sour)___healthy": {
     "crop": "Cherry",
     "disease": "Healthy",
-    "symptoms": "No disease symptoms detected.",
+    "symptoms": "No visible disease symptoms detected.",
     "treatment": "No treatment required.",
-    "prevention": "Maintain proper orchard management."
+    "prevention": "Continue pruning, orchard sanitation, and regular disease scouting."
   },
-
   "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot": {
     "crop": "Corn",
     "disease": "Gray Leaf Spot",
-    "symptoms": "Rectangular gray lesions on leaves.",
-    "treatment": "Apply fungicides and use resistant hybrids.",
-    "prevention": "Practice crop rotation and residue management."
+    "symptoms": "Long rectangular gray to tan lesions running parallel to leaf veins.",
+    "treatment": "Use fungicide on susceptible hybrids when disease pressure and crop stage justify treatment.",
+    "prevention": "Rotate crops, manage residue, and plant resistant hybrids."
   },
-
   "Corn_(maize)___Common_rust_": {
     "crop": "Corn",
     "disease": "Common Rust",
-    "symptoms": "Small reddish-brown pustules on leaves.",
-    "treatment": "Apply fungicides if infection is severe.",
-    "prevention": "Use resistant varieties and monitor crops regularly."
+    "symptoms": "Small reddish-brown pustules scattered across leaf surfaces.",
+    "treatment": "Apply fungicide if infection is severe on susceptible hybrids before yield loss occurs.",
+    "prevention": "Use resistant hybrids and monitor early in cool, humid conditions."
   },
-
   "Corn_(maize)___Northern_Leaf_Blight": {
     "crop": "Corn",
     "disease": "Northern Leaf Blight",
-    "symptoms": "Long gray-green lesions on leaves.",
-    "treatment": "Use fungicides and resistant hybrids.",
-    "prevention": "Rotate crops and manage crop debris."
+    "symptoms": "Long cigar-shaped gray-green lesions that turn tan as they mature.",
+    "treatment": "Apply fungicide when lesions appear before or around tasseling under high disease pressure.",
+    "prevention": "Use resistant hybrids, rotate crops, and manage infected residue."
   },
-
   "Corn_(maize)___healthy": {
     "crop": "Corn",
     "disease": "Healthy",
-    "symptoms": "No disease symptoms detected.",
+    "symptoms": "No visible disease symptoms detected.",
     "treatment": "No treatment required.",
-    "prevention": "Maintain balanced fertilization and irrigation."
+    "prevention": "Maintain balanced fertilization, irrigation, and field scouting."
   },
-
   "Grape___Black_rot": {
     "crop": "Grape",
     "disease": "Black Rot",
-    "symptoms": "Brown leaf spots and shriveled black fruit.",
-    "treatment": "Apply fungicides and remove infected fruit.",
-    "prevention": "Ensure vineyard sanitation and pruning."
+    "symptoms": "Brown circular leaf spots and shriveled black fruit mummies.",
+    "treatment": "Remove infected fruit and apply grape fungicides according to local timing guidance.",
+    "prevention": "Prune for airflow, remove mummified berries, and keep vineyard rows clean."
   },
-
   "Grape___Esca_(Black_Measles)": {
     "crop": "Grape",
-    "disease": "Esca (Black Measles)",
-    "symptoms": "Leaf discoloration and fruit spotting.",
-    "treatment": "Prune infected wood and improve vine health.",
-    "prevention": "Avoid trunk injuries and sanitize tools."
+    "disease": "Esca / Black Measles",
+    "symptoms": "Interveinal leaf striping, dark fruit spotting, and vine decline.",
+    "treatment": "Prune infected wood, protect pruning wounds, and remove severely affected vines.",
+    "prevention": "Avoid trunk injuries, sanitize tools, and use healthy planting material."
   },
-
   "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)": {
     "crop": "Grape",
     "disease": "Leaf Blight",
-    "symptoms": "Dark brown spots and leaf drying.",
-    "treatment": "Apply fungicides and remove infected leaves.",
-    "prevention": "Maintain good airflow within the canopy."
+    "symptoms": "Dark brown angular lesions and drying leaf tissue.",
+    "treatment": "Remove infected leaves and apply a recommended fungicide if disease spreads.",
+    "prevention": "Improve airflow, reduce leaf wetness, and maintain vineyard sanitation."
   },
-
   "Grape___healthy": {
     "crop": "Grape",
     "disease": "Healthy",
-    "symptoms": "No disease symptoms detected.",
+    "symptoms": "No visible disease symptoms detected.",
     "treatment": "No treatment required.",
-    "prevention": "Continue proper vineyard management."
+    "prevention": "Continue canopy management, irrigation control, and regular scouting."
   },
-
   "Orange___Haunglongbing_(Citrus_greening)": {
     "crop": "Orange",
-    "disease": "Citrus Greening",
-    "symptoms": "Yellow shoots, mottled leaves, and misshapen fruit.",
-    "treatment": "No known cure. Remove infected trees and control psyllids.",
-    "prevention": "Use certified disease-free plants and monitor pests."
+    "disease": "Citrus Greening / Huanglongbing",
+    "symptoms": "Blotchy yellow leaves, misshapen bitter fruit, twig dieback, and poor tree vigor.",
+    "treatment": "There is no reliable cure; remove infected trees where recommended and control psyllid vectors.",
+    "prevention": "Use certified disease-free nursery stock and monitor psyllid populations."
   },
-
   "Peach___Bacterial_spot": {
     "crop": "Peach",
     "disease": "Bacterial Spot",
-    "symptoms": "Small dark lesions on leaves and fruit.",
-    "treatment": "Apply copper-based bactericides and remove infected material.",
-    "prevention": "Use resistant varieties and avoid overhead irrigation."
+    "symptoms": "Small dark water-soaked lesions on leaves and fruit, often causing shot-hole leaf damage.",
+    "treatment": "Use copper or other locally approved bactericides and remove heavily infected material.",
+    "prevention": "Choose resistant cultivars, reduce leaf wetness, and avoid overhead irrigation."
   },
-
   "Peach___healthy": {
     "crop": "Peach",
     "disease": "Healthy",
-    "symptoms": "No disease symptoms detected.",
+    "symptoms": "No visible disease symptoms detected.",
     "treatment": "No treatment required.",
-    "prevention": "Maintain proper pruning and irrigation."
+    "prevention": "Maintain pruning, balanced nutrition, and orchard sanitation."
   },
-
   "Pepper,_bell___Bacterial_spot": {
     "crop": "Bell Pepper",
     "disease": "Bacterial Spot",
-    "symptoms": "Water-soaked spots on leaves and fruit.",
-    "treatment": "Apply copper sprays and remove infected plants.",
-    "prevention": "Use certified seeds and rotate crops."
+    "symptoms": "Water-soaked leaf spots that darken and may cause defoliation or fruit lesions.",
+    "treatment": "Remove infected plants when severe and use copper-based sprays where locally recommended.",
+    "prevention": "Use certified seed, rotate crops, avoid wet foliage, and sanitize tools."
   },
-
   "Pepper,_bell___healthy": {
     "crop": "Bell Pepper",
     "disease": "Healthy",
-    "symptoms": "No disease symptoms detected.",
+    "symptoms": "No visible disease symptoms detected.",
     "treatment": "No treatment required.",
-    "prevention": "Maintain proper nutrition and irrigation."
+    "prevention": "Continue balanced irrigation, nutrition, and pest scouting."
   },
-
   "Potato___Early_blight": {
     "crop": "Potato",
     "disease": "Early Blight",
-    "symptoms": "Dark concentric spots on older leaves.",
-    "treatment": "Apply fungicides and remove infected foliage.",
-    "prevention": "Practice crop rotation and proper spacing."
+    "symptoms": "Dark concentric target-like spots on older leaves.",
+    "treatment": "Remove infected foliage where practical and apply labeled fungicides when disease pressure is high.",
+    "prevention": "Rotate crops, avoid plant stress, and maintain proper spacing."
   },
-
   "Potato___Late_blight": {
     "crop": "Potato",
     "disease": "Late Blight",
-    "symptoms": "Dark water-soaked lesions and rapid leaf collapse.",
-    "treatment": "Apply fungicides immediately and destroy infected plants.",
-    "prevention": "Use resistant varieties and avoid excessive moisture."
+    "symptoms": "Dark water-soaked lesions, white growth under humid conditions, and rapid canopy collapse.",
+    "treatment": "Act quickly with locally recommended fungicides and destroy severely infected plants.",
+    "prevention": "Use certified seed, avoid overhead irrigation, and monitor during cool wet weather."
   },
-
   "Potato___healthy": {
     "crop": "Potato",
     "disease": "Healthy",
-    "symptoms": "No disease symptoms detected.",
+    "symptoms": "No visible disease symptoms detected.",
     "treatment": "No treatment required.",
-    "prevention": "Continue proper crop management."
+    "prevention": "Maintain crop rotation, clean seed, and routine field scouting."
   },
-
   "Raspberry___healthy": {
     "crop": "Raspberry",
     "disease": "Healthy",
-    "symptoms": "No disease symptoms detected.",
+    "symptoms": "No visible disease symptoms detected.",
     "treatment": "No treatment required.",
-    "prevention": "Maintain regular pruning and monitoring."
+    "prevention": "Maintain pruning, airflow, and regular pest and disease monitoring."
   },
-
   "Soybean___healthy": {
     "crop": "Soybean",
     "disease": "Healthy",
-    "symptoms": "No disease symptoms detected.",
+    "symptoms": "No visible disease symptoms detected.",
     "treatment": "No treatment required.",
-    "prevention": "Maintain balanced fertilization and pest monitoring."
+    "prevention": "Continue balanced fertility, crop rotation, and routine field scouting."
   },
-
   "Squash___Powdery_mildew": {
     "crop": "Squash",
     "disease": "Powdery Mildew",
-    "symptoms": "White powdery fungal growth on leaves.",
-    "treatment": "Apply fungicides and remove heavily infected leaves.",
-    "prevention": "Improve airflow and avoid overcrowding."
+    "symptoms": "White powdery fungal patches on leaves and stems.",
+    "treatment": "Remove heavily infected leaves and apply labeled fungicides if disease is spreading.",
+    "prevention": "Improve airflow, avoid overcrowding, and use resistant varieties when available."
   },
-
   "Strawberry___Leaf_scorch": {
     "crop": "Strawberry",
     "disease": "Leaf Scorch",
-    "symptoms": "Purple spots that develop into scorched leaf edges.",
-    "treatment": "Remove infected leaves and apply fungicides if necessary.",
-    "prevention": "Ensure good air circulation and proper spacing."
+    "symptoms": "Purple spots that expand into scorched or dry leaf edges.",
+    "treatment": "Remove infected leaves and apply fungicide if recommended for local disease pressure.",
+    "prevention": "Improve spacing, reduce leaf wetness, and remove old foliage after harvest."
   },
-
   "Strawberry___healthy": {
     "crop": "Strawberry",
     "disease": "Healthy",
-    "symptoms": "No disease symptoms detected.",
+    "symptoms": "No visible disease symptoms detected.",
     "treatment": "No treatment required.",
-    "prevention": "Continue routine crop care."
+    "prevention": "Maintain clean beds, proper spacing, and regular scouting."
   },
-  
-  "Peach___Bacterial_spot": {
-    "crop": "Peach",
+  "Tomato___Bacterial_spot": {
+    "crop": "Tomato",
     "disease": "Bacterial Spot",
-    "symptoms": "Small dark lesions on leaves and fruit.",
-    "treatment": "Apply copper-based bactericides and remove infected material.",
-    "prevention": "Use resistant varieties and avoid overhead irrigation."
+    "symptoms": "Small water-soaked leaf spots that turn dark, with possible fruit spotting.",
+    "treatment": "Remove infected debris and use copper-based products where locally recommended.",
+    "prevention": "Use disease-free seed or transplants, avoid overhead irrigation, and rotate away from solanaceous crops."
   },
-
-  "Peach___healthy": {
-    "crop": "Peach",
-    "disease": "Healthy",
-    "symptoms": "No disease symptoms detected.",
-    "treatment": "No treatment required.",
-    "prevention": "Maintain proper pruning and irrigation."
-  },
-
-  "Pepper,_bell___Bacterial_spot": {
-    "crop": "Bell Pepper",
-    "disease": "Bacterial Spot",
-    "symptoms": "Water-soaked spots on leaves and fruit.",
-    "treatment": "Apply copper sprays and remove infected plants.",
-    "prevention": "Use certified seeds and rotate crops."
-  },
-
-  "Pepper,_bell___healthy": {
-    "crop": "Bell Pepper",
-    "disease": "Healthy",
-    "symptoms": "No disease symptoms detected.",
-    "treatment": "No treatment required.",
-    "prevention": "Maintain proper nutrition and irrigation."
-  },
-
-  "Potato___Early_blight": {
-    "crop": "Potato",
+  "Tomato___Early_blight": {
+    "crop": "Tomato",
     "disease": "Early Blight",
-    "symptoms": "Dark concentric spots on older leaves.",
-    "treatment": "Apply fungicides and remove infected foliage.",
-    "prevention": "Practice crop rotation and proper spacing."
+    "symptoms": "Dark concentric rings on older leaves, yellowing, and lower-leaf defoliation.",
+    "treatment": "Remove affected lower leaves and apply labeled fungicide when disease spreads.",
+    "prevention": "Mulch to reduce soil splash, stake plants, rotate crops, and improve airflow."
   },
-
-  "Potato___Late_blight": {
-    "crop": "Potato",
+  "Tomato___Late_blight": {
+    "crop": "Tomato",
     "disease": "Late Blight",
-    "symptoms": "Dark water-soaked lesions and rapid leaf collapse.",
-    "treatment": "Apply fungicides immediately and destroy infected plants.",
-    "prevention": "Use resistant varieties and avoid excessive moisture."
+    "symptoms": "Large water-soaked lesions, white growth in humid conditions, and rapid plant decline.",
+    "treatment": "Remove infected plants promptly and use appropriate fungicides under extension guidance.",
+    "prevention": "Avoid prolonged leaf wetness, increase spacing, and scout during cool wet weather."
   },
-
-  "Potato___healthy": {
-    "crop": "Potato",
+  "Tomato___Leaf_Mold": {
+    "crop": "Tomato",
+    "disease": "Leaf Mold",
+    "symptoms": "Yellow patches on upper leaf surfaces with olive-gray mold on undersides.",
+    "treatment": "Remove infected leaves and apply fungicide if humidity-driven spread continues.",
+    "prevention": "Ventilate greenhouses, reduce humidity, and avoid wet foliage."
+  },
+  "Tomato___Septoria_leaf_spot": {
+    "crop": "Tomato",
+    "disease": "Septoria Leaf Spot",
+    "symptoms": "Many small circular spots with gray centers and dark borders on lower leaves.",
+    "treatment": "Remove infected foliage and use labeled fungicides when needed.",
+    "prevention": "Mulch, rotate crops, stake plants, and avoid overhead irrigation."
+  },
+  "Tomato___Spider_mites Two-spotted_spider_mite": {
+    "crop": "Tomato",
+    "disease": "Two-Spotted Spider Mite Damage",
+    "symptoms": "Fine stippling, yellowing leaves, webbing, and leaf bronzing under heavy infestation.",
+    "treatment": "Use miticides or insecticidal soaps according to label instructions and remove heavily infested leaves.",
+    "prevention": "Monitor leaf undersides, reduce plant stress, and conserve beneficial predators."
+  },
+  "Tomato___Target_Spot": {
+    "crop": "Tomato",
+    "disease": "Target Spot",
+    "symptoms": "Brown circular lesions with target-like rings on leaves and fruit.",
+    "treatment": "Remove infected leaves and use fungicide if disease is spreading.",
+    "prevention": "Improve airflow, avoid overhead irrigation, and rotate crops."
+  },
+  "Tomato___Tomato_Yellow_Leaf_Curl_Virus": {
+    "crop": "Tomato",
+    "disease": "Tomato Yellow Leaf Curl Virus",
+    "symptoms": "Upward leaf curling, yellowing, stunted growth, and reduced fruit set.",
+    "treatment": "No curative treatment exists; remove infected plants and manage whitefly vectors.",
+    "prevention": "Use resistant varieties, insect netting, reflective mulch, and whitefly control."
+  },
+  "Tomato___Tomato_mosaic_virus": {
+    "crop": "Tomato",
+    "disease": "Tomato Mosaic Virus",
+    "symptoms": "Mottled light and dark green leaves, leaf distortion, and reduced plant vigor.",
+    "treatment": "Remove infected plants and disinfect tools and hands after handling.",
+    "prevention": "Use virus-free seed, resistant cultivars, and strict sanitation."
+  },
+  "Tomato___healthy": {
+    "crop": "Tomato",
     "disease": "Healthy",
-    "symptoms": "No disease symptoms detected.",
+    "symptoms": "No visible disease symptoms detected.",
     "treatment": "No treatment required.",
-    "prevention": "Continue proper crop management."
-  },
-
-  "Raspberry___healthy": {
-    "crop": "Raspberry",
-    "disease": "Healthy",
-    "symptoms": "No disease symptoms detected.",
-    "treatment": "No treatment required.",
-    "prevention": "Maintain regular pruning and monitoring."
-  },
-
-  "Soybean___healthy": {
-    "crop": "Soybean",
-    "disease": "Healthy",
-    "symptoms": "No disease symptoms detected.",
-    "treatment": "No treatment required.",
-    "prevention": "Maintain balanced fertilization and pest monitoring."
-  },
-
-  "Squash___Powdery_mildew": {
-    "crop": "Squash",
-    "disease": "Powdery Mildew",
-    "symptoms": "White powdery fungal growth on leaves.",
-    "treatment": "Apply fungicides and remove heavily infected leaves.",
-    "prevention": "Improve airflow and avoid overcrowding."
-  },
-
-  "Strawberry___Leaf_scorch": {
-    "crop": "Strawberry",
-    "disease": "Leaf Scorch",
-    "symptoms": "Purple spots that develop into scorched leaf edges.",
-    "treatment": "Remove infected leaves and apply fungicides if necessary.",
-    "prevention": "Ensure good air circulation and proper spacing."
-  },
-
-  "Strawberry___healthy": {
-    "crop": "Strawberry",
-    "disease": "Healthy",
-    "symptoms": "No disease symptoms detected.",
-    "treatment": "No treatment required.",
-    "prevention": "Continue routine crop care."
+    "prevention": "Continue proper watering, staking, crop rotation, and routine scouting."
   }
 }
