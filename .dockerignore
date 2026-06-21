@@ -1,0 +1,15 @@
+.git
+.github
+.venv
+venv
+__pycache__
+*.pyc
+.pytest_cache
+logs
+backend/uploads/*
+!backend/uploads/.gitkeep
+ml/outputs
+results
+.env
+.DS_Store
+Thumbs.db

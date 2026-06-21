@@ -4,6 +4,8 @@ __pycache__/
 
 # Environment
 .env
+.venv/
+venv/
 
 # Model files
 *.h5
@@ -22,6 +24,13 @@ backend/uploads/*
 
 # VS Code
 .vscode/
+
+# Pytest
+.pytest_cache/
+__pycache__/
+
+# ML Outputs (prevent committing train plots/metrics)
+ml/outputs/
 
 # OS Files
 .DS_Store
