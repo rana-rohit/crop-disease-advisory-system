@@ -1,340 +1,490 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>
-        CropSense AI
-    </title>
-
-    <link rel="stylesheet"
-          href="../css/main.css">
-
-    <link rel="stylesheet"
-          href="../css/home.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CropSense AI — Explainable AI agricultural decision support platform. Disease detection, Grad-CAM analysis, treatment advisory.">
+  <title>CropSense AI — Explainable Crop Disease Detection</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/home.css">
 </head>
-
 <body>
 
-    <section class="hero">
+<!-- ── NAV ── -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav__inner">
+    <div class="nav__left">
+      <a href="index.html" class="nav__logo" aria-label="CropSense AI home">
+        <svg class="nav__logo-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <circle cx="14" cy="14" r="13" fill="url(#nLg)"/>
+          <path d="M14 7c0 0-5 3.5-5 8.5 0 2.8 2.2 5 5 5s5-2.2 5-5c0-5-5-8.5-5-8.5z" fill="rgba(255,255,255,0.22)"/>
+          <path d="M14 11v8M11.5 14l2.5-2.5 2.5 2.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs><linearGradient id="nLg" x1="1" y1="1" x2="27" y2="27" gradientUnits="userSpaceOnUse"><stop stop-color="#4ade80"/><stop offset="1" stop-color="#16a34a"/></linearGradient></defs>
+        </svg>
+        <span class="nav__logo-text">CropSense<em> AI</em></span>
+      </a>
+      <div class="nav__links">
+        <a href="index.html" class="nav__link active">Detect</a>
+        <a href="about.html" class="nav__link">About</a>
+      </div>
+    </div>
+    <div class="nav__status">
+      <span class="nav__status-dot" aria-hidden="true"></span>
+      Model Active
+    </div>
+  </div>
+</nav>
 
-        <div class="hero__grid"></div>
+<!-- ── HERO (compressed — Step 3) ── -->
+<section class="hero" aria-label="Hero">
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="hero__orb hero__orb--a" aria-hidden="true"></div>
+  <div class="hero__orb hero__orb--b" aria-hidden="true"></div>
 
-        <div class="hero__orb hero__orb--a"></div>
+  <div class="hero__content">
+    <div class="hero__eyebrow">
+      <span class="hero__eyebrow-dot" aria-hidden="true"></span>
+      Explainable AI Agricultural Decision Support
+    </div>
 
-        <div class="hero__orb hero__orb--b"></div>
+    <h1 class="hero__headline">Detect. Explain.<br><em>Advise.</em></h1>
 
-        <div class="hero__content">
+    <p class="hero__sub">
+      Upload a crop leaf image. MobileNetV2 identifies the disease,
+      Grad-CAM explains its reasoning, and a structured advisory tells you what to do next.
+    </p>
 
-            <div class="hero__eyebrow">
+    <div class="hero__tags" aria-label="Platform capabilities">
+      <span class="hero__tag">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><path d="M6 3.5v3l2 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+        &lt;1s Inference
+      </span>
+      <span class="hero__tag">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="6" r="1.8" fill="currentColor" opacity=".5"/></svg>
+        Grad-CAM Explainability
+      </span>
+      <span class="hero__tag">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><rect x="1.5" y="1.5" width="9" height="9" rx="1.8" stroke="currentColor" stroke-width="1.2"/></svg>
+        38 Disease Classes
+      </span>
+      <span class="hero__tag">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1.5C3.5 1.5 1.5 3.5 1.5 6S3.5 10.5 6 10.5 10.5 8.5 10.5 6 8.5 1.5 6 1.5z" stroke="currentColor" stroke-width="1.2"/><path d="M4 6l1.4 1.4L8 4.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Treatment Advisory
+      </span>
+    </div>
+  </div>
+</section>
 
-                <span class="hero__eyebrow-dot"></span>
+<!-- ── UPLOAD — immediately below hero, first viewport (Step 3) ── -->
+<section class="upload-section" aria-label="Image upload">
+  <div class="upload-wrapper">
 
-                AI Powered Agriculture
+    <!-- Upload zone — structural click-fix in upload.js (Step 2) -->
+    <div class="upload-zone" id="uploadZone" role="button" tabindex="0" aria-label="Upload leaf image">
+      <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp,image/bmp" aria-label="Select leaf image file">
 
-            </div>
-
-            <h1 class="hero__headline">
-
-                Detect Crop Diseases
-
-                <br>
-
-                <em>Instantly</em>
-
-            </h1>
-
-            <p class="hero__sub">
-
-                Upload a crop leaf image and receive
-                AI-powered disease diagnosis,
-                treatment recommendations,
-                and prevention guidance.
-
-            </p>
-
-            <div class="hero__stats">
-
-                <div class="hero__stat">
-
-                    <div class="hero__stat-val">
-                        38
-                    </div>
-
-                    <div class="hero__stat-lbl">
-                        Classes
-                    </div>
-
-                </div>
-
-                <div class="hero__stat">
-
-                    <div class="hero__stat-val">
-                        MobileNetV2
-                    </div>
-
-                    <div class="hero__stat-lbl">
-                        Model
-                    </div>
-
-                </div>
-
-                <div class="hero__stat">
-
-                    <div class="hero__stat-val">
-                        AI
-                    </div>
-
-                    <div class="hero__stat-lbl">
-                        Advisory
-                    </div>
-
-                </div>
-
-            </div>
-
+      <div class="upload-zone__visual">
+        <div class="upload-icon-ring" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <path d="M16 22V10M10 16l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 26h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
         </div>
-
-        <div class="hero__wave"></div>
-
-    </section>
-
-    <section class="upload-section">
-
-        <div class="upload-card">
-
-            <div class="upload-zone">
-
-                <input
-                    type="file"
-                    id="imageInput"
-                    accept="image/*">
-
-                <div class="upload-icon-wrap">
-
-                    <div class="upload-icon">
-                        🌿
-                    </div>
-
-                </div>
-
-                <h3 class="upload-title">
-
-                    Upload Leaf Image
-
-                </h3>
-
-                <p class="upload-sub">
-
-                    Select a crop leaf image for
-                    AI analysis
-
-                </p>
-
-            </div>
-
+        <p class="upload-title">Drop your leaf image here</p>
+        <p class="upload-sub">or <strong>click to browse</strong> from your device</p>
+        <div class="upload-formats" aria-label="Supported formats">
+          <span class="upload-format">JPG</span>
+          <span class="upload-format">PNG</span>
+          <span class="upload-format">WEBP</span>
+          <span class="upload-format">BMP</span>
         </div>
+      </div>
+    </div>
 
-        <div class="preview-section visible">
+    <!-- Error message (Step 10) -->
+    <div id="errorMessage" role="alert" aria-live="polite">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="flex-shrink:0;margin-top:1px">
+        <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M8 5v3M8 11h.01" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      <span id="errorText">An error occurred.</span>
+    </div>
 
-            <div class="preview-card">
-
-                <div class="preview-image-wrap">
-
-                    <img
-                        id="previewImage"
-                        style="display:none;">
-
-                </div>
-
-            </div>
-
+    <!-- Preview section — image preview state (Step 4) -->
+    <div class="preview-section" id="previewSection">
+      <div class="preview-card">
+        <div class="preview-image-wrap">
+          <img id="previewImage" alt="Uploaded leaf preview" style="display:none;">
+          <div class="preview-scan" aria-hidden="true"></div>
+          <div class="preview-corners" aria-hidden="true">
+            <span class="preview-corner tl"></span>
+            <span class="preview-corner tr"></span>
+            <span class="preview-corner bl"></span>
+            <span class="preview-corner br"></span>
+          </div>
+          <div class="preview-ai-chip" aria-hidden="true">
+            <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" stroke="#4ade80" stroke-width="1"/><circle cx="4" cy="4" r="1.2" fill="#4ade80"/></svg>
+            Ready to Analyze
+          </div>
+          <!-- Remove-image option (Step 4) -->
+          <button class="preview-remove" id="removeImageBtn" aria-label="Remove image" type="button">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </button>
         </div>
-
-        <div class="analyze-area visible">
-
-            <button
-                id="analyzeButton">
-
-                Analyze Disease
-
-            </button>
-
+        <div class="preview-footer">
+          <span class="preview-filename" id="previewFilename">image.jpg</span>
+          <button class="preview-change" id="changeImageBtn" aria-label="Change image" type="button">Change image</button>
         </div>
+      </div>
+    </div>
 
-    </section>
+    <!-- Analyze button -->
+    <div class="analyze-area" id="analyzeArea">
+      <button id="analyzeButton" class="btn btn--primary btn--lg btn--full" aria-label="Start disease analysis">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1.6"/>
+          <path d="M6 9l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="btn__label">Analyze Disease</span>
+        <span class="btn__spinner" aria-hidden="true"></span>
+      </button>
+      <p class="u-muted" style="font-size:11.5px;">Results include Grad-CAM explainability and treatment advisory</p>
+    </div>
 
-    <section class="features">
+  </div>
+</section>
 
-        <div class="hero__content">
+<!-- Loading Overlay (Step 9) -->
+<div class="loading-overlay" id="loadingOverlay" role="status" aria-label="Analyzing image" aria-live="polite">
+  <div class="loading-panel">
+    <div class="loading-icon" aria-hidden="true"><div class="loading-spinner-ring"></div></div>
+    <h2 class="loading-title">Analyzing Leaf</h2>
+    <p class="loading-step" id="loadingStep">Uploading image…</p>
+    <div class="loading-steps-list" aria-hidden="true">
+      <div class="loading-step-item" id="lstep-0"><div class="loading-step-dot"><div class="loading-mini-spinner"></div></div><span>Preprocessing image</span></div>
+      <div class="loading-step-item" id="lstep-1"><div class="loading-step-dot"><div class="loading-mini-spinner"></div></div><span>Running model</span></div>
+      <div class="loading-step-item" id="lstep-2"><div class="loading-step-dot"><div class="loading-mini-spinner"></div></div><span>Generating explainability</span></div>
+      <div class="loading-step-item" id="lstep-3"><div class="loading-step-dot"><div class="loading-mini-spinner"></div></div><span>Preparing advisory</span></div>
+    </div>
+  </div>
+</div>
 
-            <div class="features__header">
+<!-- ── FEATURES (Step 5: AI positioning) ── -->
+<section class="features" aria-label="Platform features">
+  <div class="container">
+    <div class="features__header u-center">
+      <div class="eyebrow" style="justify-content:center">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1l1.5 3.5H11L8.5 6.8 9.5 10 6 8 2.5 10 3.5 6.8 1 4.5H4.5L6 1Z" fill="currentColor"/></svg>
+        Platform Capabilities
+      </div>
+      <h2 class="section-title">Explainable AI for Agriculture</h2>
+      <p class="section-sub u-center" style="max-width:520px;margin:0 auto">Not a disease classifier — a complete diagnostic, explainability, and advisory pipeline.</p>
+    </div>
 
-                <h2>
-                    Why Use CropSense AI?
-                </h2>
-
-            </div>
-
-            <div class="features__grid">
-
-                <div class="feature-card">
-
-                    <div class="feature-title">
-                        Disease Detection
-                    </div>
-
-                    <div class="feature-desc">
-
-                        Deep learning model trained
-                        on PlantVillage dataset.
-
-                    </div>
-
-                </div>
-
-                <div class="feature-card">
-
-                    <div class="feature-title">
-                        Treatment Advice
-                    </div>
-
-                    <div class="feature-desc">
-
-                        Get treatment and prevention
-                        recommendations instantly.
-
-                    </div>
-
-                </div>
-
-                <div class="feature-card">
-
-                    <div class="feature-title">
-                        Fast Predictions
-                    </div>
-
-                    <div class="feature-desc">
-
-                        Results generated within
-                        seconds.
-
-                    </div>
-
-                </div>
-
-            </div>
-
+    <div class="features__grid">
+      <div class="feature-card">
+        <div class="feature-icon-wrap feature-icon-wrap--green" aria-hidden="true">
+          <svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M7 11l3 3 5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
-
-    </section>
-
-    <section class="how-it-works">
-
-        <div class="how-it-works__bg"></div>
-
-        <div class="hero__content">
-
-            <div class="how-it-works__header">
-
-                <h2 class="section-title">
-
-                    How It Works
-
-                </h2>
-
-            </div>
-
-            <div class="steps">
-
-                <div class="step-card">
-
-                    <div class="step-num">
-                        1
-                    </div>
-
-                    <div class="step-title">
-                        Upload
-                    </div>
-
-                    <div class="step-desc">
-
-                        Upload a crop leaf image.
-
-                    </div>
-
-                </div>
-
-                <div class="step-card">
-
-                    <div class="step-num">
-                        2
-                    </div>
-
-                    <div class="step-title">
-                        Analyze
-                    </div>
-
-                    <div class="step-desc">
-
-                        AI processes the image.
-
-                    </div>
-
-                </div>
-
-                <div class="step-card">
-
-                    <div class="step-num">
-                        3
-                    </div>
-
-                    <div class="step-title">
-                        Predict
-                    </div>
-
-                    <div class="step-desc">
-
-                        Disease is identified.
-
-                    </div>
-
-                </div>
-
-                <div class="step-card">
-
-                    <div class="step-num">
-                        4
-                    </div>
-
-                    <div class="step-title">
-                        Advise
-                    </div>
-
-                    <div class="step-desc">
-
-                        Treatment guidance provided.
-
-                    </div>
-
-                </div>
-
-            </div>
-
+        <h3 class="feature-card-title">Disease Detection</h3>
+        <p class="feature-card-desc">MobileNetV2 trained on 54,305 PlantVillage images. 95.98% validation accuracy across 38 classes.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon-wrap feature-icon-wrap--blue" aria-hidden="true">
+          <svg viewBox="0 0 22 22" fill="none"><path d="M11 3L3 7v7c0 3.5 3.4 6.8 8 7.8 4.6-1 8-4.3 8-7.8V7L11 3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 11l2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </div>
+        <h3 class="feature-card-title">Explainable AI</h3>
+        <p class="feature-card-desc">Every prediction is paired with a visual explanation — not a black box.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon-wrap feature-icon-wrap--purple" aria-hidden="true">
+          <svg viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8.5" stroke="currentColor" stroke-width="1.5"/><circle cx="11" cy="11" r="3.5" fill="currentColor" opacity=".25"/><circle cx="11" cy="11" r="1.2" fill="currentColor"/></svg>
+        </div>
+        <h3 class="feature-card-title">Grad-CAM Analysis</h3>
+        <p class="feature-card-desc">Gradient-weighted activation maps highlight exactly which leaf regions drove the diagnosis.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon-wrap feature-icon-wrap--amber" aria-hidden="true">
+          <svg viewBox="0 0 22 22" fill="none"><path d="M11 3C7 3 3 7 3 11c0 3 1.5 5.5 4 7l4 4 4-4c2.5-1.5 4-4 4-7 0-4-4-8-8-8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="feature-card-title">Treatment Advisory</h3>
+        <p class="feature-card-desc">Structured symptoms, treatment protocols, and prevention strategies for every disease.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon-wrap feature-icon-wrap--green" aria-hidden="true">
+          <svg viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M7 11h8M11 7v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="feature-card-title">MobileNetV2 Backbone</h3>
+        <p class="feature-card-desc">Lightweight architecture purpose-built for sub-second, field-side mobile inference.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon-wrap feature-icon-wrap--blue" aria-hidden="true">
+          <svg viewBox="0 0 22 22" fill="none"><path d="M3 11h16M11 3v16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="feature-card-title">38 Disease Classes</h3>
+        <p class="feature-card-desc">Comprehensive coverage across 11 crop types, healthy and diseased states alike.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    </section>
+<!-- ── EXPLAINABLE AI SPOTLIGHT (Step 5/7 — new section, makes XAI prominent) ── -->
+<section class="xai-spotlight" aria-label="Explainable AI">
+  <div class="xai-spotlight__bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="xai-spotlight__grid">
+      <div>
+        <div class="eyebrow">Explainability First</div>
+        <h2 class="section-title">See What the Model Sees</h2>
+        <p class="section-sub">Black-box predictions aren't trustworthy in agricultural decision-making. Every CropSense AI diagnosis comes with a Grad-CAM activation map showing exactly which regions of the leaf influenced the result.</p>
+        <div class="xai-spotlight__list">
+          <div class="xai-spotlight__item">
+            <div class="xai-spotlight__item-icon" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><circle cx="7.5" cy="7.5" r="6" stroke="currentColor" stroke-width="1.3"/><path d="M5 7.5l1.7 1.7L10 6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <p class="xai-spotlight__item-text"><strong>Gradient-weighted activation mapping</strong> traces the model's attention back to the last convolutional layer.</p>
+          </div>
+          <div class="xai-spotlight__item">
+            <div class="xai-spotlight__item-icon" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><rect x="2" y="2" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.3"/></svg>
+            </div>
+            <p class="xai-spotlight__item-text"><strong>Side-by-side comparison slider</strong> on the result page lets you drag between the original image and the heatmap overlay.</p>
+          </div>
+          <div class="xai-spotlight__item">
+            <div class="xai-spotlight__item-icon" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1.5L2 4.5v4c0 3 2.3 5.7 5.5 6.3 3.2-.6 5.5-3.3 5.5-6.3v-4l-5.5-3z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            </div>
+            <p class="xai-spotlight__item-text"><strong>Plain-language insight cards</strong> translate activation patterns into a readable explanation of the diagnosis.</p>
+          </div>
+        </div>
+      </div>
 
-    <script src="../js/api.js"></script>
+      <div class="xai-spotlight__visual" aria-hidden="true">
+        <div class="xai-mock-compare">
+          <div class="xai-mock-panel xai-mock-panel--original"><span class="xai-mock-label">Original</span></div>
+          <div class="xai-mock-panel xai-mock-panel--heatmap"><span class="xai-mock-label">Grad-CAM</span></div>
+          <div class="xai-mock-arrow">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 10h14M11 4l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script src="../js/upload.js"></script>
+<!-- ── SUPPORTED CROPS ── -->
+<section class="crops" aria-label="Supported crop types">
+  <div class="container">
+    <div class="crops__header u-center">
+      <div class="eyebrow" style="justify-content:center">Supported Crops</div>
+      <h2 class="section-title">11 Crop Categories</h2>
+      <p class="section-sub u-center" style="max-width:440px;margin:0 auto">Trained on the PlantVillage benchmark dataset covering the most commercially significant crops.</p>
+    </div>
+    <div class="crops__grid">
+      <div class="crop-card"><div class="crop-card__emoji">🍎</div><div class="crop-card__name">Apple</div><div class="crop-card__count">4 classes</div></div>
+      <div class="crop-card"><div class="crop-card__emoji">🌽</div><div class="crop-card__name">Corn</div><div class="crop-card__count">4 classes</div></div>
+      <div class="crop-card"><div class="crop-card__emoji">🍇</div><div class="crop-card__name">Grape</div><div class="crop-card__count">4 classes</div></div>
+      <div class="crop-card"><div class="crop-card__emoji">🍊</div><div class="crop-card__name">Orange</div><div class="crop-card__count">1 class</div></div>
+      <div class="crop-card"><div class="crop-card__emoji">🍑</div><div class="crop-card__name">Peach</div><div class="crop-card__count">2 classes</div></div>
+      <div class="crop-card"><div class="crop-card__emoji">🫑</div><div class="crop-card__name">Pepper</div><div class="crop-card__count">2 classes</div></div>
+      <div class="crop-card"><div class="crop-card__emoji">🥔</div><div class="crop-card__name">Potato</div><div class="crop-card__count">3 classes</div></div>
+      <div class="crop-card"><div class="crop-card__emoji">🌿</div><div class="crop-card__name">Soybean</div><div class="crop-card__count">1 class</div></div>
+      <div class="crop-card"><div class="crop-card__emoji">🎃</div><div class="crop-card__name">Squash</div><div class="crop-card__count">1 class</div></div>
+      <div class="crop-card"><div class="crop-card__emoji">🍓</div><div class="crop-card__name">Strawberry</div><div class="crop-card__count">2 classes</div></div>
+      <div class="crop-card"><div class="crop-card__emoji">🍅</div><div class="crop-card__name">Tomato</div><div class="crop-card__count">10 classes</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PIPELINE ── -->
+<section class="how" aria-label="How it works">
+  <div class="how__bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="how__header u-center">
+      <div class="eyebrow" style="justify-content:center">Pipeline</div>
+      <h2 class="section-title">From Upload to Insight</h2>
+      <p class="section-sub u-center" style="max-width:440px;margin:0 auto">Four steps from raw image to actionable disease advisory.</p>
+    </div>
+    <div class="how__steps">
+      <div class="how__step">
+        <div class="how__step-num" aria-hidden="true">1</div>
+        <div class="how__step-title">Upload</div>
+        <div class="how__step-desc">Select or drag-and-drop a crop leaf image.</div>
+      </div>
+      <div class="how__step">
+        <div class="how__step-num" aria-hidden="true">2</div>
+        <div class="how__step-title">Preprocess</div>
+        <div class="how__step-desc">Resized to 224×224 and normalised for MobileNetV2.</div>
+      </div>
+      <div class="how__step">
+        <div class="how__step-num" aria-hidden="true">3</div>
+        <div class="how__step-title">Explain</div>
+        <div class="how__step-desc">Grad-CAM generates a saliency heatmap over the last conv layer.</div>
+      </div>
+      <div class="how__step">
+        <div class="how__step-num" aria-hidden="true">4</div>
+        <div class="how__step-title">Advise</div>
+        <div class="how__step-desc">Disease, confidence, and treatment advisory returned instantly.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer" role="contentinfo">
+  <div class="footer__inner">
+    <div>
+      <div class="footer__logo">
+        <svg class="footer__logo-icon" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <circle cx="11" cy="11" r="10" fill="url(#fLg)"/>
+          <path d="M11 5c0 0-4 3-4 7 0 2.2 1.8 4 4 4s4-1.8 4-4c0-4-4-7-4-7z" fill="rgba(255,255,255,0.2)"/>
+          <defs><linearGradient id="fLg" x1="1" y1="1" x2="21" y2="21" gradientUnits="userSpaceOnUse"><stop stop-color="#4ade80"/><stop offset="1" stop-color="#16a34a"/></linearGradient></defs>
+        </svg>
+        <span class="footer__logo-name">CropSense AI</span>
+      </div>
+      <p class="footer__tagline">Explainable crop disease detection and agricultural advisory system. B.Tech Final Year Project.</p>
+    </div>
+    <div>
+      <div class="footer__col-title">Navigation</div>
+      <div class="footer__links">
+        <a href="index.html">Disease Detection</a>
+        <a href="about.html">About the Project</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer__col-title">Technology</div>
+      <div class="footer__tech-pills">
+        <span class="footer__tech-pill">MobileNetV2</span>
+        <span class="footer__tech-pill">Grad-CAM</span>
+        <span class="footer__tech-pill">PlantVillage</span>
+        <span class="footer__tech-pill">Flask API</span>
+        <span class="footer__tech-pill">38 Classes</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span class="footer__copy">Smart Crop Disease Detection &amp; Advisory System</span>
+    <span class="footer__copy">B.Tech Final Year Project</span>
+  </div>
+</footer>
+
+<script src="../js/api.js"></script>
+<script src="../js/upload.js"></script>
+
+<!-- Upload UX enhancements: drag-drop, preview, remove, loading steps -->
+<script>
+(function() {
+  const zone        = document.getElementById('uploadZone');
+  const input       = document.getElementById('imageInput');
+  const prevSec     = document.getElementById('previewSection');
+  const prevImg     = document.getElementById('previewImage');
+  const prevName    = document.getElementById('previewFilename');
+  const analyzeArea = document.getElementById('analyzeArea');
+  const changeBtn   = document.getElementById('changeImageBtn');
+  const removeBtn   = document.getElementById('removeImageBtn');
+  const errEl       = document.getElementById('errorMessage');
+  const errText     = document.getElementById('errorText');
+  const overlay     = document.getElementById('loadingOverlay');
+  const loadStep    = document.getElementById('loadingStep');
+  const analyzeBtn  = document.getElementById('analyzeButton');
+
+  // Drag-drop (Step 4)
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) {
+      // Assign dropped file to the real input so upload.js / analyze flow see it
+      const dt = new DataTransfer();
+      dt.items.add(file);
+      input.files = dt.files;
+      showPreview(file);
+    }
+  });
+
+  // Keyboard activation on the zone (Enter / Space) — a11y
+  zone.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); }
+  });
+
+  // File input change → preview
+  input.addEventListener('change', function() {
+    const file = this.files[0];
+    if (file) showPreview(file);
+  });
+
+  function showPreview(file) {
+    const allowed = ['image/jpeg','image/png','image/webp','image/bmp'];
+    if (!allowed.includes(file.type)) {
+      showError('Unsupported file type. Please upload a JPG, PNG, WEBP, or BMP image.');
+      return;
+    }
+    if (file.size > 12 * 1024 * 1024) {
+      showError('Image is too large. Please upload a file under 12MB.');
+      return;
+    }
+    hideError();
+    prevImg.src = URL.createObjectURL(file);
+    prevImg.style.display = 'block';
+    prevName.textContent = file.name;
+    prevSec.classList.add('visible');
+    analyzeArea.classList.add('visible');
+    const beam = prevSec.querySelector('.preview-scan');
+    if (beam) { beam.style.animation = 'none'; beam.offsetHeight; beam.style.animation = ''; }
+  }
+
+  function resetUpload() {
+    input.value = '';
+    prevImg.src = '';
+    prevSec.classList.remove('visible');
+    analyzeArea.classList.remove('visible');
+    hideError();
+  }
+
+  if (changeBtn) changeBtn.addEventListener('click', (e) => { e.stopPropagation(); input.value = ''; input.click(); });
+  if (removeBtn) removeBtn.addEventListener('click', (e) => { e.stopPropagation(); resetUpload(); });
+
+  function showError(msg) { errText.textContent = msg; errEl.classList.add('visible'); }
+  function hideError() { errEl.classList.remove('visible'); }
+
+  // Loading step animation (Step 9)
+  const steps = ['lstep-0','lstep-1','lstep-2','lstep-3'];
+  const stepLabels = ['Preprocessing image…','Running model…','Generating explainability…','Preparing advisory…'];
+
+  function runLoadingSteps() {
+    let i = 0;
+    overlay.classList.add('active');
+    function next() {
+      if (i > 0) document.getElementById(steps[i-1]).classList.replace('active','done');
+      if (i < steps.length) {
+        const el = document.getElementById(steps[i]);
+        el.classList.add('active');
+        loadStep.textContent = stepLabels[i];
+        i++;
+      }
+    }
+    next();
+    const interval = setInterval(() => { if (i < steps.length) next(); }, 850);
+    return { stop: () => {
+      clearInterval(interval);
+      overlay.classList.remove('active');
+      steps.forEach(id => { const el = document.getElementById(id); el.classList.remove('active','done'); });
+    }};
+  }
+
+  if (analyzeBtn) {
+    analyzeBtn.addEventListener('click', function() {
+      if (!input.files[0]) return;
+      analyzeBtn.classList.add('btn--loading');
+      analyzeBtn.disabled = true;
+      const loader = runLoadingSteps();
+      setTimeout(() => { loader.stop(); analyzeBtn.classList.remove('btn--loading'); analyzeBtn.disabled = false; }, 30000);
+    }, true);
+  }
+})();
+</script>
 
 </body>
-
 </html>

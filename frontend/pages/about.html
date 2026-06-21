@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About CropSense AI — Explainable crop disease detection using MobileNetV2 and Grad-CAM.">
+  <title>About — CropSense AI</title>
+  <link rel="stylesheet" href="../css/main.css">
+  <style>
+    /* About-page specific styles — dark glass theme, consistent with main.css tokens */
+    .about-hero { background: radial-gradient(ellipse 100% 80% at 50% -10%, #0f2e1c 0%, var(--bg) 65%); padding: 64px 0 0; position: relative; overflow: hidden; }
+    .about-hero__bg { position:absolute;inset:0;background-image:radial-gradient(circle,rgba(74,222,128,0.10) 1px,transparent 1px);background-size:38px 38px;-webkit-mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,black 0%,transparent 100%);mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,black 0%,transparent 100%);pointer-events:none;}
+    .about-hero__content { position:relative;z-index:1;text-align:center;padding-bottom:48px; }
+    .about-hero__wave { height:52px;position:relative;z-index:1;margin-bottom:-2px; }
+    .about-hero__wave svg { width:100%;height:100%; }
+    .about-body { padding: 56px 0; background: var(--bg); }
+    .about-grid { display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:56px; }
+    .about-card { background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:26px 30px;box-shadow:var(--shadow-md); }
+    .about-card__num { font-family:var(--font-display);font-size:40px;font-weight:800;color:var(--mint);line-height:1;margin-bottom:8px;letter-spacing:-2px; }
+    .about-card__label { font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--subtle);margin-bottom:13px; }
+    .about-card__text { font-size:13.5px;color:var(--slate);line-height:1.7; }
+    .problem-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px; }
+    .problem-item { background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--glass-border);border-radius:var(--r-md);padding:20px;box-shadow:var(--shadow-sm);transition:transform var(--dur-slow) var(--ease),border-color var(--dur-slow) var(--ease); }
+    .problem-item:hover { transform:translateY(-3px);border-color:var(--border-strong); }
+    .problem-item__icon { font-size:26px;margin-bottom:11px; }
+    .problem-item__title { font-family:var(--font-display);font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:6px; }
+    .problem-item__text { font-size:12.5px;color:var(--muted);line-height:1.62; }
+    .tech-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:28px; }
+    .tech-card { background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:22px;box-shadow:var(--shadow-sm);transition:border-color var(--dur-slow) var(--ease); }
+    .tech-card:hover { border-color:var(--border-strong); }
+    .tech-card__header { display:flex;align-items:center;gap:12px;margin-bottom:13px; }
+    .tech-card__icon { width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;border:1px solid;flex-shrink:0; }
+    .tech-card__name { font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--ink); }
+    .tech-card__sub { font-size:11.5px;color:var(--subtle); }
+    .tech-card__desc { font-size:13px;color:var(--slate);line-height:1.66; }
+    .metrics-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px; }
+    .metric-card { background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--glass-border);border-radius:var(--r-lg);padding:22px;text-align:center;box-shadow:var(--shadow-sm); }
+    .metric-val { font-family:var(--font-display);font-size:30px;font-weight:800;color:var(--mint);line-height:1;letter-spacing:-1px; }
+    .metric-label { font-size:11.5px;color:var(--subtle);text-transform:uppercase;letter-spacing:0.8px;margin-top:6px; }
+    .pipeline-steps { display:flex;flex-direction:column;gap:0;margin-top:28px; }
+    .pipeline-step { display:flex;align-items:flex-start;gap:18px;padding:20px 0;border-bottom:1px solid var(--border-soft); }
+    .pipeline-step:last-child { border-bottom:none; }
+    .pipeline-step__num { width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--emerald),var(--emerald-dk));color:#fff;font-family:var(--font-display);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;box-shadow:0 4px 12px rgba(22,163,74,0.35); }
+    .pipeline-step__title { font-family:var(--font-display);font-size:14.5px;font-weight:700;color:var(--ink);margin-bottom:5px; }
+    .pipeline-step__desc { font-size:13px;color:var(--slate);line-height:1.66; }
+    .pipeline-step__badge { display:inline-block;margin-top:8px;background:rgba(255,255,255,0.03);border:1px solid var(--border-soft);border-radius:var(--r-xs);padding:3px 9px;font-size:10.5px;font-weight:600;color:var(--subtle);font-family:var(--font-mono); }
+    .section-divider { border:none;border-top:1px solid var(--border-soft);margin:56px 0; }
+    @media(max-width:860px){.about-grid{grid-template-columns:1fr}.tech-grid{grid-template-columns:1fr}.problem-grid{grid-template-columns:1fr 1fr}.metrics-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:560px){.problem-grid{grid-template-columns:1fr}.metrics-grid{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <div class="nav__inner">
+    <div class="nav__left">
+      <a href="index.html" class="nav__logo">
+        <svg class="nav__logo-icon" viewBox="0 0 28 28" fill="none">
+          <circle cx="14" cy="14" r="13" fill="url(#nLgA)"/>
+          <path d="M14 7c0 0-5 3.5-5 8.5 0 2.8 2.2 5 5 5s5-2.2 5-5c0-5-5-8.5-5-8.5z" fill="rgba(255,255,255,0.22)"/>
+          <path d="M14 11v8M11.5 14l2.5-2.5 2.5 2.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs><linearGradient id="nLgA" x1="1" y1="1" x2="27" y2="27" gradientUnits="userSpaceOnUse"><stop stop-color="#4ade80"/><stop offset="1" stop-color="#16a34a"/></linearGradient></defs>
+        </svg>
+        <span class="nav__logo-text">CropSense<em> AI</em></span>
+      </a>
+      <div class="nav__links">
+        <a href="index.html" class="nav__link">Detect</a>
+        <a href="about.html" class="nav__link active">About</a>
+      </div>
+    </div>
+    <div class="nav__status">
+      <span class="nav__status-dot"></span>
+      Model Active
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="about-hero">
+  <div class="about-hero__bg" aria-hidden="true"></div>
+  <div class="container about-hero__content">
+    <div class="eyebrow eyebrow--light">B.Tech Final Year Project</div>
+    <h1 class="section-title section-title--light" style="font-size:clamp(38px,5.5vw,68px);letter-spacing:-2px;margin-bottom:16px">
+      Smart Crop Disease<br>Detection &amp; Advisory
+    </h1>
+    <p class="section-sub section-sub--light" style="max-width:560px;margin:0 auto;font-size:17px">
+      An end-to-end explainable AI pipeline for agricultural disease diagnosis,
+      built on MobileNetV2, Grad-CAM, and the PlantVillage benchmark dataset.
+    </p>
+  </div>
+  <div class="about-hero__wave">
+    <svg viewBox="0 0 1440 60" fill="none" preserveAspectRatio="none">
+      <path d="M0 30C480 60 960 0 1440 30V60H0V30Z" fill="#06120c"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ── BODY ── -->
+<div class="about-body">
+<div class="container">
+
+  <!-- Key numbers -->
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="about-card__num">95.98%</div>
+      <div class="about-card__label">Validation Accuracy</div>
+      <div class="about-card__text">Achieved on the PlantVillage holdout set across all 38 disease classes using MobileNetV2 fine-tuned with transfer learning.</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card__num">54,305</div>
+      <div class="about-card__label">Training Images</div>
+      <div class="about-card__text">PlantVillage dataset images across 38 classes covering 11 crop types. Augmentation applied during training for improved generalization.</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card__num">38</div>
+      <div class="about-card__label">Disease Classes</div>
+      <div class="about-card__text">Healthy and diseased states for Apple, Corn, Grape, Orange, Peach, Pepper, Potato, Soybean, Squash, Strawberry, and Tomato.</div>
+    </div>
+    <div class="about-card">
+      <div class="about-card__num">XAI</div>
+      <div class="about-card__label">Explainability Method</div>
+      <div class="about-card__text">Gradient-weighted Class Activation Mapping (Grad-CAM) applied to the last convolutional layer to generate saliency heatmaps for every prediction.</div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- Problem Statement -->
+  <div>
+    <div class="eyebrow">Problem Statement</div>
+    <h2 class="section-title" style="margin-bottom:14px">Why This Matters</h2>
+    <p class="section-sub" style="max-width:700px;margin-bottom:0">
+      Agricultural crop diseases cause an estimated 20–40% loss in global food production annually.
+      Early, accurate diagnosis is the single most effective intervention — yet access to trained
+      agronomists is severely limited in rural regions. CropSense AI addresses this gap with an
+      automated, explainable, and actionable diagnostic tool accessible from any device.
+    </p>
+    <div class="problem-grid">
+      <div class="problem-item">
+        <div class="problem-item__icon">🌾</div>
+        <div class="problem-item__title">Food Security</div>
+        <div class="problem-item__text">Crop diseases threaten global food supply. AI-assisted early detection reduces losses before they escalate to field-wide impact.</div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-item__icon">🔬</div>
+        <div class="problem-item__title">Expert Scarcity</div>
+        <div class="problem-item__text">Agronomists are scarce and expensive. A smartphone-accessible AI diagnostic removes the bottleneck of expert availability.</div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-item__icon">🤝</div>
+        <div class="problem-item__title">Trust in AI</div>
+        <div class="problem-item__text">Black-box AI decisions are rejected by practitioners. Grad-CAM explainability builds trust by showing what the model is looking at.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- Dataset -->
+  <div>
+    <div class="eyebrow">Dataset</div>
+    <h2 class="section-title" style="margin-bottom:14px">PlantVillage Benchmark</h2>
+    <p class="section-sub" style="max-width:680px;margin-bottom:0">
+      The PlantVillage dataset is the standard benchmark for plant disease classification research,
+      curated at Penn State University. It contains controlled-environment leaf photographs
+      under consistent lighting conditions, making it well-suited for training transfer-learning models.
+    </p>
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="metric-val">54,305</div><div class="metric-label">Total Images</div></div>
+      <div class="metric-card"><div class="metric-val">38</div><div class="metric-label">Classes</div></div>
+      <div class="metric-card"><div class="metric-val">11</div><div class="metric-label">Crop Types</div></div>
+      <div class="metric-card"><div class="metric-val">224px</div><div class="metric-label">Input Resolution</div></div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- Technology -->
+  <div>
+    <div class="eyebrow">Technology Stack</div>
+    <h2 class="section-title" style="margin-bottom:14px">How It's Built</h2>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-card__header">
+          <div class="tech-card__icon feature-icon-wrap--green" style="background:rgba(34,197,94,0.14);border-color:rgba(34,197,94,0.30);color:var(--mint)">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="3" width="16" height="16" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M7 11h8M11 7v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div><div class="tech-card__name">MobileNetV2</div><div class="tech-card__sub">Deep Learning Backbone</div></div>
+        </div>
+        <div class="tech-card__desc">Lightweight inverted residual architecture pretrained on ImageNet. Top classification layers replaced and fine-tuned on PlantVillage. Delivers &lt;1s inference at 224×224 input resolution with &lt;4MB model size.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-card__header">
+          <div class="tech-card__icon" style="background:rgba(29,78,216,0.07);border:1px solid rgba(29,78,216,0.18);color:var(--blue)">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8.5" stroke="currentColor" stroke-width="1.5"/><circle cx="11" cy="11" r="3.5" fill="currentColor" opacity=".3"/><circle cx="11" cy="11" r="1.2" fill="currentColor"/></svg>
+          </div>
+          <div><div class="tech-card__name">Grad-CAM</div><div class="tech-card__sub">Explainability · XAI</div></div>
+        </div>
+        <div class="tech-card__desc">Gradient-weighted Class Activation Mapping computes the gradient of the predicted class score with respect to the last convolutional layer's feature maps — producing a spatial heatmap without modifying the model architecture.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-card__header">
+          <div class="tech-card__icon" style="background:rgba(202,138,4,0.08);border:1px solid rgba(202,138,4,0.20);color:var(--amber)">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 3C7 3 3 7 3 11c0 3 1.5 5.5 4 7l4 4 4-4c2.5-1.5 4-4 4-7 0-4-4-8-8-8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </div>
+          <div><div class="tech-card__name">Flask REST API</div><div class="tech-card__sub">Backend · Python</div></div>
+        </div>
+        <div class="tech-card__desc">Python Flask backend exposes a single prediction endpoint accepting multipart image uploads. Returns structured JSON containing disease label, confidence, top-3 predictions, advisory content, Grad-CAM overlay, and model metadata.</div>
+      </div>
+      <div class="tech-card">
+        <div class="tech-card__header">
+          <div class="tech-card__icon" style="background:rgba(124,58,237,0.07);border:1px solid rgba(124,58,237,0.18);color:var(--purple)">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="5" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 9h8M7 13h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div><div class="tech-card__name">Vanilla Frontend</div><div class="tech-card__sub">HTML · CSS · JavaScript</div></div>
+        </div>
+        <div class="tech-card__desc">Pure HTML, CSS, and JavaScript — no frameworks or build tools required. Designed for direct deployment on any static host. The CSS design system uses custom properties for consistent theming across all pages.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- Pipeline -->
+  <div>
+    <div class="eyebrow">Inference Pipeline</div>
+    <h2 class="section-title" style="margin-bottom:14px">From Image to Advisory</h2>
+    <div class="pipeline-steps">
+      <div class="pipeline-step">
+        <div class="pipeline-step__num">1</div>
+        <div>
+          <div class="pipeline-step__title">Image Upload &amp; Validation</div>
+          <div class="pipeline-step__desc">User uploads a JPG, PNG, or WEBP crop leaf image via the web interface. The frontend validates MIME type and size before sending to the backend.</div>
+          <span class="pipeline-step__badge">multipart/form-data → /api/predict</span>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-step__num">2</div>
+        <div>
+          <div class="pipeline-step__title">Preprocessing</div>
+          <div class="pipeline-step__desc">PIL opens the image, resizes to 224×224 pixels, converts to RGB, applies MobileNetV2 preprocessing normalisation (pixel values scaled to [−1, 1]).</div>
+          <span class="pipeline-step__badge">PIL → tf.keras.applications.mobilenet_v2.preprocess_input</span>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-step__num">3</div>
+        <div>
+          <div class="pipeline-step__title">MobileNetV2 Inference</div>
+          <div class="pipeline-step__desc">The preprocessed tensor is passed through the fine-tuned MobileNetV2 model. Softmax output produces a 38-dimensional probability vector. Top-3 classes and their scores are extracted.</div>
+          <span class="pipeline-step__badge">model.predict() → softmax[38]</span>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-step__num">4</div>
+        <div>
+          <div class="pipeline-step__title">Grad-CAM Generation</div>
+          <div class="pipeline-step__desc">Gradients of the top class score with respect to the last convolutional layer (Conv_1) are computed. Global average pooling of these gradients weights the feature maps. The result is upsampled and overlaid on the original image.</div>
+          <span class="pipeline-step__badge">GradientTape → Conv_1 → overlay_base64</span>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-step__num">5</div>
+        <div>
+          <div class="pipeline-step__title">Advisory Lookup</div>
+          <div class="pipeline-step__desc">The predicted disease label is matched against the structured advisory database, returning symptom descriptions, treatment protocols, and prevention guidelines.</div>
+          <span class="pipeline-step__badge">disease_label → advisory JSON</span>
+        </div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-step__num">6</div>
+        <div>
+          <div class="pipeline-step__title">JSON Response</div>
+          <div class="pipeline-step__desc">A structured response containing prediction, top_predictions, advisory, xai (overlay base64 + metadata), and model metadata is returned to the frontend in a single request.</div>
+          <span class="pipeline-step__badge">{ prediction, advisory, top_predictions, xai, metadata }</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- CTA -->
+  <div class="u-center" style="padding:20px 0 40px">
+    <h2 class="section-title" style="margin-bottom:12px">Try the System</h2>
+    <p class="section-sub u-center" style="max-width:420px;margin:0 auto 28px">Upload a crop leaf image and see disease detection and Grad-CAM explainability in action.</p>
+    <a href="index.html" class="btn btn--primary btn--lg">
+      <svg width="17" height="17" viewBox="0 0 17 17" fill="none"><path d="M8.5 2.5v12M2.5 8.5l6-6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Analyze a Leaf
+    </a>
+  </div>
+
+</div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <div class="footer__logo">
+        <svg class="footer__logo-icon" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="10" fill="url(#fLgA)"/><path d="M11 5c0 0-4 3-4 7 0 2.2 1.8 4 4 4s4-1.8 4-4c0-4-4-7-4-7z" fill="rgba(255,255,255,0.2)"/><defs><linearGradient id="fLgA" x1="1" y1="1" x2="21" y2="21" gradientUnits="userSpaceOnUse"><stop stop-color="#4ade80"/><stop offset="1" stop-color="#16a34a"/></linearGradient></defs></svg>
+        <span class="footer__logo-name">CropSense AI</span>
+      </div>
+      <p class="footer__tagline">Explainable crop disease detection and agricultural advisory system. B.Tech Final Year Project.</p>
+    </div>
+    <div>
+      <div class="footer__col-title">Navigation</div>
+      <div class="footer__links">
+        <a href="index.html">Disease Detection</a>
+        <a href="about.html">About the Project</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer__col-title">Technology</div>
+      <div class="footer__tech-pills">
+        <span class="footer__tech-pill">MobileNetV2</span>
+        <span class="footer__tech-pill">Grad-CAM</span>
+        <span class="footer__tech-pill">PlantVillage</span>
+        <span class="footer__tech-pill">Flask API</span>
+        <span class="footer__tech-pill">TensorFlow</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span class="footer__copy">Smart Crop Disease Detection &amp; Advisory System · B.Tech Final Year Project</span>
+  </div>
+</footer>
+
+</body>
+</html>
