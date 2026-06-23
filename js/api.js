@@ -22,23 +22,4 @@ async function predictDisease(imageFile) {
 
   return await response.json();
 }
-
-async function generateGradCam(imageFile, classIndex) {
-  const formData = new FormData();
-  formData.append('image', imageFile);
-  if (classIndex !== undefined && classIndex !== null) {
-    formData.append('class_index', classIndex);
-  }
-
-  const response = await fetch(`${API_BASE_URL}/xai/gradcam`, {
-    method: 'POST',
-    body: formData,
-  });
-
-  if (!response.ok) {
-    const errorBody = await response.json().catch(() => ({}));
-    throw new Error(errorBody.error || `Server error ${response.status}`);
-  }
-
-  return await response.json();
-}
+

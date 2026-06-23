@@ -217,91 +217,40 @@
       </div>
     </div>
 
-    <!-- ── XAI SECTION — Step 7 centerpiece: comparison slider ── -->
-    <section id="xaiPanel" role="region" aria-label="Explainability">
+    <!-- ── XAI SECTION — STATIC DEMONSTRATION ── -->
+    <section id="xaiPanel" role="region" aria-label="Explainability Showcase" style="margin-top: 40px;">
       <div class="section-hdr">
         <div class="section-hdr__left">
-          <h2 class="section-title" style="font-size:19px">Explainability Dashboard</h2>
-          <p style="font-size:12.5px;color:var(--muted);margin-top:3px">Drag the slider to compare the original image with the Grad-CAM activation overlay</p>
+          <h2 class="section-title" style="font-size:19px">Explainable AI Module</h2>
+          <p style="font-size:12.5px;color:var(--muted);margin-top:3px">Demonstration of model interpretation capabilities</p>
         </div>
         <div class="model-chip">
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.2"/><circle cx="6.5" cy="6.5" r="2" fill="currentColor" opacity=".4"/><circle cx="6.5" cy="6.5" r=".8" fill="currentColor"/></svg>
-          <span id="gradcamMeta">Grad-CAM</span>
+          <span>Grad-CAM</span>
         </div>
       </div>
 
-      <div class="xai-generation-ui" id="xaiGenerateContainer" style="margin-top: 20px; padding: 20px; text-align: center; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px dashed rgba(255,255,255,0.1);">
-        <p style="margin-bottom: 15px; color: var(--muted); font-size: 14px;">XAI generation is resource intensive and is generated on-demand.</p>
-        <button class="btn btn--primary" id="generateXaiBtn">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-            <circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1.6"/>
-            <path d="M6 9l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Generate AI Explanation
-        </button>
-        <div id="xaiLoading" style="display: none; color: var(--mint); font-size: 14px; margin-top: 10px;">
-          <div class="loading-mini-spinner" style="display: inline-block; vertical-align: middle; margin-right: 8px;"></div>
-          Generating explanation... This may take a few seconds.
-        </div>
-        <p id="xaiErrorMsg" style="color: #f87171; display: none; margin-top: 10px; font-size: 14px;">Explanation generation unavailable. Prediction results remain valid.</p>
-      </div>
-
-      <div id="xaiResultsContainer" style="display: none; margin-top: 20px;">
-        <!-- Comparison slider (Step 7) -->
-      <div class="xai-slider" id="xaiSlider" role="slider" aria-label="Compare original and Grad-CAM images" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
-        <div class="xai-slider__layer xai-slider__layer--under">
-          <img id="gradcamOverlay" alt="Grad-CAM activation heatmap overlay">
-        </div>
-        <div class="xai-slider__layer xai-slider__layer--over" id="xaiSliderOver">
-          <img id="xaiOriginalImage" alt="Original uploaded leaf image">
-        </div>
-        <div class="xai-slider__label xai-slider__label--left">Original</div>
-        <div class="xai-slider__label xai-slider__label--right">Grad-CAM</div>
-        <div class="xai-slider__handle" id="xaiSliderHandle">
-          <div class="xai-slider__handle-icon" aria-hidden="true">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 4L2 7l3 3M9 4l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-        </div>
-      </div>
-
-      <!-- Static fallback grid (shown if JS slider unavailable) -->
-      <div class="xai-grid-fallback" id="xaiGridFallback">
-        <div class="xai-card">
-          <div class="xai-card__header"><div class="xai-card__title">Original Image</div></div>
-          <img id="xaiOriginalImageFallback" class="xai-image" alt="Original uploaded leaf image">
-        </div>
-        <div class="xai-card">
-          <div class="xai-card__header"><div class="xai-card__title">Grad-CAM Overlay</div></div>
-          <img id="gradcamOverlayFallback" class="xai-image" alt="Grad-CAM activation heatmap overlay">
-        </div>
-      </div>
-
-      <!-- XAI insight card -->
-      <div class="xai-insight">
-        <div class="xai-insight__header">
-          <h3 class="xai-insight__title">Activation Insights</h3>
-          <span class="badge badge--blue">Grad-CAM · Last Conv Layer</span>
-        </div>
-        <p class="xai-insight__text" id="xaiInsightText">
-          The model focused primarily on lesion regions, discoloration patterns, and irregular textures
-          consistent with the predicted disease. Warm (red/yellow) regions indicate highest activation;
-          cool (blue) regions had minimal influence on this prediction.
+      <div class="xai-generation-ui" style="margin-top: 20px; padding: 25px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
+        <p style="margin-bottom: 20px; color: var(--ink); font-size: 15px; line-height: 1.6;">
+          This system includes an <strong>Explainable AI (XAI)</strong> framework based on Grad-CAM visualization for model interpretation. 
+          Due to computational constraints of the free-tier deployment environment, real-time explanation generation is available in the research environment and local deployment.
         </p>
-        <div class="xai-stats" id="xaiStats">
-          <div class="xai-stat">
-            <div class="xai-stat__label">Method</div>
-            <div class="xai-stat__val" id="xaiMethod">Grad-CAM</div>
+
+        <!-- Static fallback grid -->
+        <div class="xai-grid-fallback" id="xaiGridFallback" style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+          <div class="xai-card" style="background: var(--bg-card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border);">
+            <div class="xai-card__header" style="padding: 10px 15px; border-bottom: 1px solid var(--border);"><div class="xai-card__title" style="font-size: 13px; font-weight: 600;">Original Sample</div></div>
+            <img src="assets/xai/gradcam_sample_original.jpg" class="xai-image" alt="Original crop sample" style="width: 100%; display: block; object-fit: cover; aspect-ratio: 1/1; background: #000;">
           </div>
-          <div class="xai-stat">
-            <div class="xai-stat__label">Target Layer</div>
-            <div class="xai-stat__val" id="xaiLayer">—</div>
-          </div>
-          <div class="xai-stat">
-            <div class="xai-stat__label">Mean Activation</div>
-            <div class="xai-stat__val" id="xaiMeanActivation">—</div>
+          <div class="xai-card" style="background: var(--bg-card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border);">
+            <div class="xai-card__header" style="padding: 10px 15px; border-bottom: 1px solid var(--border);"><div class="xai-card__title" style="font-size: 13px; font-weight: 600;">Grad-CAM Overlay</div></div>
+            <img src="assets/xai/gradcam_sample_overlay.jpg" class="xai-image" alt="Grad-CAM activation heatmap overlay" style="width: 100%; display: block; object-fit: cover; aspect-ratio: 1/1; background: #000;">
           </div>
         </div>
-      </div>
+
+        <p style="margin-top: 20px; font-size: 13px; color: var(--muted); border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 15px;">
+          <em>Note: Real-time XAI generation is disabled on the public deployment due to cloud resource limitations. Full explainability functionality remains available in the research environment.</em>
+        </p>
       </div>
     </section>
 
@@ -366,24 +315,6 @@
 (function() {
   const result = JSON.parse(localStorage.getItem('predictionResult') || 'null');
   const uploadedImg = localStorage.getItem('uploadedImage');
-
-  // Set XAI original image (both slider layer and fallback grid)
-  const xaiOriginal = document.getElementById('xaiOriginalImage');
-  const xaiOriginalFallback = document.getElementById('xaiOriginalImageFallback');
-  if (uploadedImg) {
-    if (xaiOriginal) xaiOriginal.src = uploadedImg;
-    if (xaiOriginalFallback) xaiOriginalFallback.src = uploadedImg;
-  }
-  // Mirror Grad-CAM overlay into fallback grid once prediction.js sets it
-  const gradcamOverlay = document.getElementById('gradcamOverlay');
-  const gradcamOverlayFallback = document.getElementById('gradcamOverlayFallback');
-  if (gradcamOverlay && gradcamOverlayFallback) {
-    const imgObs = new MutationObserver(() => {
-      if (gradcamOverlay.src) gradcamOverlayFallback.src = gradcamOverlay.src;
-    });
-    imgObs.observe(gradcamOverlay, { attributes: true, attributeFilter: ['src'] });
-  }
-
   // ── Confidence ring gauge + badges (Step 6 + 8) ──
   const RING_CIRC = 2 * Math.PI * 38; // r=38
 
@@ -457,14 +388,6 @@
   observe('diseaseName', onDiseaseSet);
   observe('predictionTime', onTimeSet);
 
-  if (result && result.xai && result.xai.metadata) {
-    const meta = result.xai.metadata;
-    const methodEl = document.getElementById('xaiMethod');
-    const layerEl  = document.getElementById('xaiLayer');
-    if (methodEl) methodEl.textContent = meta.method || 'Grad-CAM';
-    if (layerEl)  layerEl.textContent  = meta.target_layer || 'Last Conv';
-  }
-
   // Animate top predictions
   // NOTE: prediction.js runs synchronously before this script and already
   // inserted the <li> elements — so we must style EXISTING items immediately,
@@ -496,39 +419,7 @@
     listObs.observe(listEl, { childList: true }); // catch any future/late insertions too
   }
 
-  // ── XAI Comparison Slider drag logic (Step 7) ──
-  const slider = document.getElementById('xaiSlider');
-  const sliderOver = document.getElementById('xaiSliderOver');
-  const sliderHandle = document.getElementById('xaiSliderHandle');
-  if (slider && sliderOver && sliderHandle) {
-    let dragging = false;
 
-    function setSlider(pct) {
-      pct = Math.max(0, Math.min(100, pct));
-      sliderOver.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
-      sliderHandle.style.left = pct + '%';
-      slider.setAttribute('aria-valuenow', Math.round(pct));
-    }
-    setSlider(50);
-
-    function posFromEvent(e) {
-      const rect = slider.getBoundingClientRect();
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      return ((clientX - rect.left) / rect.width) * 100;
-    }
-
-    slider.addEventListener('pointerdown', (e) => { dragging = true; setSlider(posFromEvent(e)); slider.setPointerCapture(e.pointerId); });
-    slider.addEventListener('pointermove', (e) => { if (dragging) setSlider(posFromEvent(e)); });
-    slider.addEventListener('pointerup', () => { dragging = false; });
-    slider.addEventListener('pointerleave', () => { dragging = false; });
-
-    // Keyboard control for a11y
-    slider.addEventListener('keydown', (e) => {
-      const current = parseFloat(slider.getAttribute('aria-valuenow')) || 50;
-      if (e.key === 'ArrowLeft')  { setSlider(current - 5); e.preventDefault(); }
-      if (e.key === 'ArrowRight') { setSlider(current + 5); e.preventDefault(); }
-    });
-  }
 })();
 </script>
 
