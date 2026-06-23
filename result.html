@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CropSense AI — Disease analysis result with Grad-CAM explainability and treatment advisory.">
+  <meta name="description" content="CropSense AI — Disease analysis result and agricultural treatment advisory.">
   <title>Analysis Result — CropSense AI</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -46,7 +46,7 @@
       </nav>
       <div class="badge badge--dark">
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="4" stroke="currentColor" stroke-width="1"/><path d="M5 3v2l1.5 1" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
-        MobileNetV2 · Grad-CAM
+        MobileNetV2
       </div>
     </div>
 
@@ -217,41 +217,35 @@
       </div>
     </div>
 
-    <!-- ── XAI SECTION — STATIC DEMONSTRATION ── -->
-    <section id="xaiPanel" role="region" aria-label="Explainability Showcase" style="margin-top: 40px;">
+    <section class="future-scope-panel" role="region" aria-label="Future enhancements">
+
       <div class="section-hdr">
         <div class="section-hdr__left">
-          <h2 class="section-title" style="font-size:19px">Explainable AI Module</h2>
-          <p style="font-size:12.5px;color:var(--muted);margin-top:3px">Demonstration of model interpretation capabilities</p>
-        </div>
-        <div class="model-chip">
-          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.2"/><circle cx="6.5" cy="6.5" r="2" fill="currentColor" opacity=".4"/><circle cx="6.5" cy="6.5" r=".8" fill="currentColor"/></svg>
-          <span>Grad-CAM</span>
+          <h2 class="section-title" style="font-size:19px">
+            Future Enhancements
+          </h2>
+          <p style="font-size:12.5px;color:var(--muted);margin-top:3px">
+            Planned extensions for future versions of the platform
+          </p>
         </div>
       </div>
 
-      <div class="xai-generation-ui" style="margin-top: 20px; padding: 25px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);">
-        <p style="margin-bottom: 20px; color: var(--ink); font-size: 15px; line-height: 1.6;">
-          This system includes an <strong>Explainable AI (XAI)</strong> framework based on Grad-CAM visualization for model interpretation. 
-          Due to computational constraints of the free-tier deployment environment, real-time explanation generation is available in the research environment and local deployment.
-        </p>
+      <div class="preds-card">
 
-        <!-- Static fallback grid -->
-        <div class="xai-grid-fallback" id="xaiGridFallback" style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-          <div class="xai-card" style="background: var(--bg-card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border);">
-            <div class="xai-card__header" style="padding: 10px 15px; border-bottom: 1px solid var(--border);"><div class="xai-card__title" style="font-size: 13px; font-weight: 600;">Original Sample</div></div>
-            <img src="assets/xai/gradcam_sample_original.jpg" class="xai-image" alt="Original crop sample" style="width: 100%; display: block; object-fit: cover; aspect-ratio: 1/1; background: #000;">
-          </div>
-          <div class="xai-card" style="background: var(--bg-card); border-radius: 8px; overflow: hidden; border: 1px solid var(--border);">
-            <div class="xai-card__header" style="padding: 10px 15px; border-bottom: 1px solid var(--border);"><div class="xai-card__title" style="font-size: 13px; font-weight: 600;">Grad-CAM Overlay</div></div>
-            <img src="assets/xai/gradcam_sample_overlay.jpg" class="xai-image" alt="Grad-CAM activation heatmap overlay" style="width: 100%; display: block; object-fit: cover; aspect-ratio: 1/1; background: #000;">
-          </div>
-        </div>
+        <ul style="line-height:2;">
+          <li>Grad-CAM based Explainable AI visualizations</li>
+          <li>Disease progression monitoring</li>
+          <li>Multi-image batch analysis</li>
+          <li>Mobile application deployment</li>
+          <li>Regional language advisory support</li>
+          <li>Precision agriculture integration</li>
+        </ul>
 
-        <p style="margin-top: 20px; font-size: 13px; color: var(--muted); border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 15px;">
-          <em>Note: Real-time XAI generation is disabled on the public deployment due to cloud resource limitations. Full explainability functionality remains available in the research environment.</em>
+        <p style="margin-top:20px;color:var(--muted)">
+          This project architecture supports future integration of Explainable AI (XAI) techniques such as Grad-CAM for visual interpretation of model decisions.
         </p>
       </div>
+
     </section>
 
     <!-- ── CTA ── -->
@@ -294,7 +288,7 @@
       <div class="footer__col-title">Technology</div>
       <div class="footer__tech-pills">
         <span class="footer__tech-pill">MobileNetV2</span>
-        <span class="footer__tech-pill">Grad-CAM</span>
+        <span class="footer__tech-pill">Future-XAI</span>
         <span class="footer__tech-pill">PlantVillage</span>
         <span class="footer__tech-pill">Flask API</span>
       </div>
