@@ -21,12 +21,7 @@ def predict():
     image_bytes = file.read()
     image_buffer = io.BytesIO(image_bytes)
 
-    # Check for XAI flag in query params or form data
-    include_xai = request.args.get("include_xai", "false").lower() == "true"
-    if "include_xai" in request.form:
-        include_xai = request.form["include_xai"].lower() == "true"
-
-    # Predict
-    result = predict_disease(image_buffer, include_xai=include_xai)
+    # Predict (XAI decoupled to separate endpoint)
+    result = predict_disease(image_buffer)
 
     return jsonify(result)

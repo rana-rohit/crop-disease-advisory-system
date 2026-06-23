@@ -64,8 +64,8 @@ def tensor_to_uint8_image(image_tensor: np.ndarray) -> np.ndarray:
     MobileNetV2 preprocess_input scales to [-1, 1], so we need to reverse that.
     """
     img = image_tensor[0]
-    # Reverse MobileNetV2 preprocessing (which was img = img / 127.5 - 1.0 or img/255.0)
-    # The image_service currently does: image_array.astype("float32") / 255.0
-    # So we just multiply by 255.
-    img = np.clip(img * 255.0, 0, 255).astype(np.uint8)
+    # Reverse MobileNetV2 preprocessing (which was img = img / 127.5 - 1.0 or similar to [-1, 1])
+    # The image_service uses tf.keras.applications.mobilenet_v2.preprocess_input
+    # So we reverse it back to [0, 255]
+    img = np.clip((img + 1.0) * 127.5, 0, 255).astype(np.uint8)
     return img

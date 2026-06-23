@@ -17,7 +17,7 @@ from backend.services.inference_stats_service import (
     start_timer,
 )
 
-def predict_disease(image_buffer, include_xai: bool = False):
+def predict_disease(image_buffer):
     """
     Predict disease from image buffer and return full advisory report.
     """
@@ -81,7 +81,7 @@ def predict_disease(image_buffer, include_xai: bool = False):
                 "severity": None,
                 "metadata": metadata,
             }
-            record_prediction(start_time, include_xai=include_xai)
+            record_prediction(start_time)
             return result
 
         advisory_info = get_disease_info(primary_class)
@@ -94,11 +94,7 @@ def predict_disease(image_buffer, include_xai: bool = False):
             "metadata": metadata,
         }
         
-        if include_xai:
-            xai_data = generate_gradcam_explanation(model, image_tensor, top_index, primary_class)
-            result["xai"] = xai_data
-
-        record_prediction(start_time, include_xai=include_xai)
+        record_prediction(start_time)
         return result
     except Exception:
         record_prediction_error()

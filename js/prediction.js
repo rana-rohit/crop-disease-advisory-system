@@ -78,24 +78,66 @@ const xaiPanel       = document.getElementById('xaiPanel');
 const gradcamOverlay = document.getElementById('gradcamOverlay');
 const gradcamMeta    = document.getElementById('gradcamMeta');
 
-if (result && result.xai && result.xai.visualizations && result.xai.visualizations.overlay_base64) {
-  if (gradcamOverlay) {
-    gradcamOverlay.src = `data:image/png;base64,${result.xai.visualizations.overlay_base64}`;
-  }
-  if (gradcamMeta) {
-    const xaiMeta = result.xai.metadata || {};
-    gradcamMeta.textContent = `${xaiMeta.method || 'Grad-CAM'} · ${xaiMeta.target_layer || 'Last Conv Layer'}`;
-  }
-  if (xaiPanel) xaiPanel.style.display = '';
+// Always show the panel now, but with the Generate button
+if (xaiPanel) xaiPanel.style.display = '';
 
-  // Additive: activation statistics, only if backend supplies them
-  const stats = (result.xai.metadata && result.xai.metadata.activation_stats) || null;
-  if (stats) {
-    const meanEl = document.getElementById('xaiMeanActivation');
-    const maxEl  = document.getElementById('xaiMaxActivation');
-    if (meanEl && stats.mean_activation !== undefined) meanEl.textContent = Number(stats.mean_activation).toFixed(3);
-    if (maxEl  && stats.max_activation  !== undefined) maxEl.textContent  = Number(stats.max_activation).toFixed(3);
-  }
-} else if (xaiPanel) {
-  xaiPanel.style.display = 'none';
-}
+const generateXaiBtn = document.getElementById('generateXaiBtn');
+const xaiLoading = document.getElementById('xaiLoading');
+const xaiErrorMsg = document.getElementById('xaiErrorMsg');
+const xaiGenerateContainer = document.getElementById('xaiGenerateContainer');
+const xaiResultsContainer = document.getElementById('xaiResultsContainer');
+
+if (generateXaiBtn) {
+  generateXaiBtn.addEventListener('click', async () => {
+    generateXaiBtn.style.display = 'none';
+    xaiLoading.style.display = 'block';
+    xaiErrorMsg.style.display = 'none';
+
+    try {
+      const dataUrl = localStorage.getItem('uploadedImage');
+      if (!dataUrl) throw new Error("No image found");
+      const fetchRes = await fetch(dataUrl);
+      const blob = await fetchRes.blob();
+      const file = new File([blob], "image.jpg", { type: blob.type });
+      
+      const xaiData = await generateGradCam(file);
+      
+      if (xaiData && xaiData.xai && xaiData.xai.visualizations && xaiData.xai.visualizations.overlay_base64) {
+        if (gradcamOverlay) {
+          gradcamOverlay.src = `data:image/png;base64,${xaiData.xai.visualizations.overlay_base64}`;
+        }
+        if (gradcamMeta) {
+          const xaiMeta = xaiData.xai.metadata || {};
+          gradcamMeta.textContent = `${xaiMeta.method || 'Grad-CAM'} · ${xaiMeta.target_layer || 'Last Conv Layer'}`;
+        }
+        
+        // Additive: activation statistics
+        const stats = (xaiData.xai.metadata && xaiData.xai.metadata.activation_stats) || null;
+        if (stats) {
+          const meanEl = document.getElementById('xaiMeanActivation');
+          const maxEl  = document.getElementById('xaiMaxActivation');
+          if (meanEl && stats.mean_activation !== undefined) meanEl.textContent = Number(stats.mean_activation).toFixed(3);
+          if (maxEl  && stats.max_activation  !== undefined) maxEl.textContent  = Number(stats.max_activation).toFixed(3);
+        }
+        
+        // Show results, hide generate container
+        if (xaiGenerateContainer) xaiGenerateContainer.style.display = 'none';
+        if (xaiResultsContainer) xaiResultsContainer.style.display = 'block';
+        
+        // Ensure fallback images are updated
+        const gradcamOverlayFallback = document.getElementById('gradcamOverlayFallback');
+        if (gradcamOverlayFallback && gradcamOverlay) gradcamOverlayFallback.src = gradcamOverlay.src;
+      } else {
+        throw new Error("Invalid XAI data returned");
+      }
+    } catch (error) {
+      console.error('XAI generation failed:', error);
+      if (xaiLoading) xaiLoading.style.display = 'none';
+      if (generateXaiBtn) generateXaiBtn.style.display = 'inline-block';
+      if (xaiErrorMsg) {
+        xaiErrorMsg.textContent = "Explanation generation failed. Prediction results remain valid.";
+        xaiErrorMsg.style.display = 'block';
+      }
+    }
+  });
+}
