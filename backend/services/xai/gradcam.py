@@ -49,16 +49,24 @@ class GradCAM(XAIMethod):
         # Record operations for automatic differentiation
         with tf.GradientTape() as tape:
             if parent_model is model:
-                grad_model = tf.keras.models.Model(
-                    model.inputs,
-                    [target_layer.output, model.output]
-                )
+                if not hasattr(model, '_gradcam_models'):
+                    model._gradcam_models = {}
+                if target_layer_name not in model._gradcam_models:
+                    model._gradcam_models[target_layer_name] = tf.keras.models.Model(
+                        model.inputs,
+                        [target_layer.output, model.output]
+                    )
+                grad_model = model._gradcam_models[target_layer_name]
                 conv_outputs, predictions = grad_model(image_tensor, training=False)
             else:
-                nested_grad_model = tf.keras.models.Model(
-                    parent_model.inputs,
-                    [target_layer.output, parent_model.output]
-                )
+                if not hasattr(parent_model, '_gradcam_models'):
+                    parent_model._gradcam_models = {}
+                if target_layer_name not in parent_model._gradcam_models:
+                    parent_model._gradcam_models[target_layer_name] = tf.keras.models.Model(
+                        parent_model.inputs,
+                        [target_layer.output, parent_model.output]
+                    )
+                nested_grad_model = parent_model._gradcam_models[target_layer_name]
                 nested_inputs = [image_tensor] if len(parent_model.inputs) == 1 else image_tensor
                 conv_outputs, nested_outputs = nested_grad_model(nested_inputs, training=False)
 

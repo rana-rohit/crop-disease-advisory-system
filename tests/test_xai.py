@@ -30,13 +30,12 @@ def test_xai_visualization_utilities():
     assert isinstance(b64, str)
     assert len(b64) > 0
 
-def test_prediction_with_xai(client, sample_image):
-    """Test the /predict endpoint with include_xai=true."""
+def test_xai_gradcam_endpoint_valid(client, sample_image):
+    """Test the /api/xai/gradcam endpoint."""
     data = {
-        "image": (sample_image, "test_leaf.jpg"),
-        "include_xai": "true"
+        "image": (sample_image, "test_leaf.jpg")
     }
-    response = client.post("/api/predict", data=data, content_type="multipart/form-data")
+    response = client.post("/api/xai/gradcam", data=data, content_type="multipart/form-data")
     assert response.status_code == 200
 
     json_data = response.get_json()

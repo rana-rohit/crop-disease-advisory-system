@@ -50,4 +50,4 @@ def test_frontend_uses_backend_api_contract():
         contents = file.read()
 
     assert "/api" in contents
-    assert "/predict?include_xai=true" in contents
+    assert "/predict" in contents

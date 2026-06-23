@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="CropSense AI — Disease analysis result with Grad-CAM explainability and treatment advisory.">
   <title>Analysis Result — CropSense AI</title>
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -230,7 +230,24 @@
         </div>
       </div>
 
-      <!-- Comparison slider (Step 7) -->
+      <div class="xai-generation-ui" id="xaiGenerateContainer" style="margin-top: 20px; padding: 20px; text-align: center; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px dashed rgba(255,255,255,0.1);">
+        <p style="margin-bottom: 15px; color: var(--muted); font-size: 14px;">XAI generation is resource intensive and is generated on-demand.</p>
+        <button class="btn btn--primary" id="generateXaiBtn">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M6 9l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Generate AI Explanation
+        </button>
+        <div id="xaiLoading" style="display: none; color: var(--mint); font-size: 14px; margin-top: 10px;">
+          <div class="loading-mini-spinner" style="display: inline-block; vertical-align: middle; margin-right: 8px;"></div>
+          Generating explanation... This may take a few seconds.
+        </div>
+        <p id="xaiErrorMsg" style="color: #f87171; display: none; margin-top: 10px; font-size: 14px;">Explanation generation unavailable. Prediction results remain valid.</p>
+      </div>
+
+      <div id="xaiResultsContainer" style="display: none; margin-top: 20px;">
+        <!-- Comparison slider (Step 7) -->
       <div class="xai-slider" id="xaiSlider" role="slider" aria-label="Compare original and Grad-CAM images" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
         <div class="xai-slider__layer xai-slider__layer--under">
           <img id="gradcamOverlay" alt="Grad-CAM activation heatmap overlay">
@@ -285,6 +302,7 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
 
     <!-- ── CTA ── -->
@@ -338,8 +356,10 @@
   </div>
 </footer>
 
+<!-- api.js — API client -->
+<script src="js/api.js"></script>
 <!-- prediction.js — sets all content IDs -->
-<script src="../js/prediction.js"></script>
+<script src="js/prediction.js"></script>
 
 <!-- Result page enhancement script -->
 <script>
